@@ -11,7 +11,7 @@ UICollectionView的布局探索
 
 `UICollectionView` 根据布局信息，将这些视图显示在屏幕上， 每次将项插入到`UICollectionView`或删除项时，都会对添加或删除的项进行额外的布局传递。
 
-###1、视图中每个项的布局属性
+### 1、视图中每个项的布局属性
 
 `UICollectionViewLayoutAttributes` 是封装的一个布局对象，用于管理 `UICollectionView` 中每个项的布局属性！
 
@@ -108,13 +108,13 @@ UICollectionView的布局探索
 @end
 ```
 
-###2、`UICollectionView` 的布局管理
+### 2、`UICollectionView` 的布局管理
 
 [`UICollectionViewLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout?language=objc) 是为 `UICollectionView` 生成布局信息的抽象基类：该对象确定单元格、补充视图和装饰视图在 `UICollectionView` 内的位置；`UICollectionView`  将提供的布局信息应用于相应的视图，以便它们可以显示在屏幕上。
 
 在子类化之前，考虑是否可以调整 `UICollectionViewCompositionalLayout` 来满足布局需求。
 
-####2.1、 预处理：提供布局属性
+#### 2.1、 预处理：提供布局属性
 
 下述方法提供了 `UICollectionView` 在屏幕上展示视图所需的基本布局信息。每个布局对象应该实现以下方法的几种：
 
@@ -208,7 +208,7 @@ UICollectionView的布局探索
 
 
 
-####2.2、 响应 `UICollectionView` 更新
+#### 2.2、 响应 `UICollectionView` 更新
 
  当 `UICollectionView` 中的数据发生更改并且要插入或删除项时，布局对象需要更新布局信息； 特别地，任何被拖动、添加或删除的项必须更新其布局信息以反映其新位置；
 * 对于已拖动的项，`UICollectionView` 使用标准方法检索项的更新布局属性；
@@ -298,7 +298,7 @@ UICollectionView的布局探索
 - (NSIndexPath *)targetIndexPathForInteractivelyMovingItem:(NSIndexPath *)previousIndexPath withPosition:(CGPoint)position API_AVAILABLE(ios(9.0));
 ```
 
-####2.3、使布局无效：优化布局性能
+#### 2.3、使布局无效：优化布局性能
 
 在自定义布局时，可以通过只取消布局中实际更改的部分来提高性能:
 *   当更改项时，调用 `-invalidateLayout` 方法强制将 `UICollectionView` 重新计算它的所有布局信息并重新应用它;
@@ -385,7 +385,7 @@ UICollectionView的布局探索
 ```
 
 
-####2.4、协调动画变化
+#### 2.4、协调动画变化
 
 ```
 /** 在显示单元格的新边界之前，UICollectionView 在动画块内的边界发生改变时调用
@@ -405,7 +405,7 @@ UICollectionView的布局探索
 - (void)finalizeAnimatedBoundsChange;
 ```
 
-####2.5、布局之间的过渡
+#### 2.5、布局之间的过渡
 
 `UICollectionView` 在传入和传出布局的布局过渡动画之前调用这些方法
 
@@ -431,7 +431,7 @@ UICollectionView的布局探索
 ```
 
 
-####2.6、注册装饰视图
+#### 2.6、注册装饰视图
 
 ```
 /** 为布局对象注册一个装饰视图
@@ -445,7 +445,7 @@ UICollectionView的布局探索
 - (void)registerNib:(nullable UINib *)nib forDecorationViewOfKind:(NSString *)elementKind;
 ```
 
-####2.7、支持从右到左的布局
+#### 2.7、支持从右到左的布局
 
 `UICollectionView` 的默认排列顺序是从左到右，但是有时候需求可能从右到左排列。这时重写下述方法：
 
@@ -471,9 +471,9 @@ UICollectionView的布局探索
 @property(nonatomic, readonly) BOOL flipsHorizontallyInOppositeLayoutDirection;
 ```
 
-###3、应用
+### 3、应用
 
-#####3.1、实现瀑布流之左对齐或右对齐
+##### 3.1、实现瀑布流之左对齐或右对齐
 
 `minimumInteritemSpacing` 设置同一行的项之间的最小间距：这个间距用来计算在一行中可以容纳多少项，在确定了项的数量之后，实际的间距可能会比这个数值大；最终的结果就是`UICollectionViewCell`在`UICollectionView`两边对齐。
 

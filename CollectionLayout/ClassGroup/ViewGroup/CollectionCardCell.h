@@ -1,8 +1,8 @@
 //
-//  PinterestView.h
-//  PinterestDemo
+//  CollectionCardCell.h
+//  CollectionLayout
 //
-//  Created by 苏沫离 on 2020/8/10.
+//  Created by 苏沫离 on 2020/8/11.
 //  Copyright © 2020 苏沫离. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PinterestCollectionCell : UICollectionViewCell
+@interface CollectionCardCell : UICollectionViewCell
 @property (nonatomic ,strong) DataModel *model;
 @end
 

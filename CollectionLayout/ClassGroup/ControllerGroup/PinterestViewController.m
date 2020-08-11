@@ -10,7 +10,7 @@
 
 
 #import "PinterestViewController.h"
-#import "PinterestView.h"
+#import "PinterestCollectionCell.h"
 #import "YLCollectionPinterestLayout.h"
 #import "CollectionSectionHeaderView.h"
 

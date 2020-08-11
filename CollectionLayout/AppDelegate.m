@@ -16,13 +16,13 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     ViewController *vc = [[ViewController alloc]init];
-    self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:vc];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    nav.navigationBar.translucent = NO;
+    self.window.rootViewController = nav;
     return YES;
 }
 

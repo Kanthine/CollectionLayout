@@ -36,7 +36,7 @@
 - (void)prepareLayout{
     [super prepareLayout];
     
-    NSLog(@"cellAlignmentType === %ld",self.cellAlignmentType);
+    NSLog(@"cellAlignmentType ------ %ld",self.cellAlignmentType);
     
     if (self.cellAlignmentType == YLCollectionAlignmentDefault) {
         return;
@@ -137,6 +137,18 @@
 }
 
 #pragma mark - setter and getter
+
+- (void)setCellAlignmentType:(YLCollectionAlignment)cellAlignmentType{
+    if (_cellAlignmentType != cellAlignmentType) {
+        _cellAlignmentType = cellAlignmentType;
+        [self invalidateLayout];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+            NSLog(@"cellAlignmentType ==4=== %ld",self->_cellAlignmentType);
+        });
+        NSLog(@"cellAlignmentType ==2=== %ld",_cellAlignmentType);
+    }
+}
 
 - (NSMutableArray<UICollectionViewLayoutAttributes *> *)attributesArray{
     if (!_attributesArray){

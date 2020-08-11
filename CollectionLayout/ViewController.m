@@ -74,6 +74,9 @@
         _itemArray = [NSMutableArray array];
         [_itemArray addObject:@{@"左对齐/右对齐":@"AlignmentViewController"}];
         [_itemArray addObject:@{@"瀑布流":@"PinterestViewController"}];
+        [_itemArray addObject:@{@"卡片":@"CardViewController"}];
+        [_itemArray addObject:@{@"卡片1":@"CardViewController1"}];
+
     }
     return _itemArray;
 }

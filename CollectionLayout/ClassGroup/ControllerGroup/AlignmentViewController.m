@@ -42,10 +42,6 @@
         [sender setTitle:@"右对齐" forState:UIControlStateNormal];
         flowLayout.cellAlignmentType = YLCollectionAlignmentRight;
     }
-        
-    [flowLayout invalidateLayout];
-    [self.collectionView reloadData];
-    NSLog(@"flowLayout ===== %@",flowLayout);
 }
 
 #pragma mark - YLAlignmentFlowLayoutDelegate

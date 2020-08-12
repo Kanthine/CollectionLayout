@@ -1,5 +1,41 @@
 # CollectionLayout
-UICollectionView的布局探索
+UICollectionView的特效
+
+### 应用
+
+##### 左对齐或右对齐
+
+<p align="center" >
+  <img src="https://upload-images.jianshu.io/upload_images/7112462-6cbdc416707577e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左右对齐" title="左对齐或右对齐">
+</p>
+
+
+
+#####  瀑布流
+
+
+<p align="center" >
+  <img src="https://upload-images.jianshu.io/upload_images/7112462-3e3ce6bbcb76a21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="瀑布流" title="瀑布流">
+</p>
+
+
+##### CoverFlow 效果
+
+
+<p align="center" >
+  <img src="https://upload-images.jianshu.io/upload_images/7112462-4a33486989ebcf2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CoverFlow" title="CoverFlow">
+</p>
+
+
+#####  轮转效果
+
+
+<p align="center" >
+  <img src="https://upload-images.jianshu.io/upload_images/7112462-ae1073d6cca900b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="卡片轮转." title="卡片轮转.">
+</p>
+
+
+
 
 `UICollectionView`包含三种类型的视觉元素：
 * 单元格 `Cells` ：用于展示内容的主要元素，每个单元格表示集合中的单个数据项；
@@ -471,33 +507,3 @@ UICollectionView的布局探索
 @property(nonatomic, readonly) BOOL flipsHorizontallyInOppositeLayoutDirection;
 ```
 
-### 3、应用
-
-##### 3.1、左对齐或右对齐
-
-`minimumInteritemSpacing` 设置同一行的项之间的最小间距：这个间距用来计算在一行中可以容纳多少项，在确定了项的数量之后，实际的间距可能会比这个数值大；最终的结果就是`UICollectionViewCell`在`UICollectionView`两边对齐。
-
-但是在实际开发中，可能遇到`UICollectionViewCell`左对齐或者右对齐的需求，这时就需要自定义```UICollectionViewFlowLayout```类，重写`-layoutAttributesForElementsInRect:`方法！
-
-
-<p align="center" >
-  <img src="https://upload-images.jianshu.io/upload_images/7112462-80e92a79645c8581.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PasswordInput" title="左对齐或右对齐">
-</p>
-
-
-![左右对齐.png](https://upload-images.jianshu.io/upload_images/7112462-6cbdc416707577e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-##### 3.2、瀑布流
-
-
-![瀑布流.png](https://upload-images.jianshu.io/upload_images/7112462-3e3ce6bbcb76a21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-
-##### 3.3、CoverFlow 效果
-
-![CoverFlow.png](https://upload-images.jianshu.io/upload_images/7112462-4a33486989ebcf2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-##### 3.4、 轮转效果
-
-![卡片轮转.png](https://upload-images.jianshu.io/upload_images/7112462-ae1073d6cca900b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

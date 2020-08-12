@@ -1,8 +1,8 @@
 //
-//  YLCollectionCardLayout_1.h
+//  CardReelViewController.h
 //  CollectionLayout
 //
-//  Created by 苏沫离 on 2020/8/11.
+//  Created by 苏沫离 on 2020/8/12.
 //  Copyright © 2020 苏沫离. All rights reserved.
 //
 
@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YLCollectionCardLayout_1 : UICollectionViewFlowLayout
+///转轮效果
+@interface CardReelViewController : UIViewController
 
 @end
 

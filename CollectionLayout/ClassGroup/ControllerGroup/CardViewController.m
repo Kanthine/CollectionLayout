@@ -11,7 +11,6 @@
 #import "DataModel.h"
 #import "CollectionCardCell.h"
 #import "YLCollectionCardLayout.h"
-#import "YLCollectionCardLayout_1.h"
 
 @interface CardViewController ()
 <UICollectionViewDelegate,UICollectionViewDataSource>
@@ -33,7 +32,6 @@
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    self.collectionView.frame = self.view.bounds;
 }
 
 #pragma mark - public method
@@ -86,12 +84,20 @@
 
 - (UICollectionView *)collectionView{
     if (_collectionView == nil) {
-        YLCollectionCardLayout_1 *layout = [[YLCollectionCardLayout_1 alloc] init];
-        layout.itemSize = CGSizeMake(CGRectGetWidth(UIScreen.mainScreen.bounds) - 40.0, CGRectGetWidth(UIScreen.mainScreen.bounds));
-        layout.minimumInteritemSpacing = 12;
-        layout.sectionInset = UIEdgeInsetsMake(0, 16, 20, 16);
+        YLCollectionCardLayout *layout = [[YLCollectionCardLayout alloc] init];
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+//        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        CGRect frame;
+        if (layout.scrollDirection == UICollectionViewScrollDirectionVertical) {
+            frame = self.view.bounds;
+            layout.itemSize = CGSizeMake(CGRectGetWidth(UIScreen.mainScreen.bounds) - 40.0, CGRectGetWidth(UIScreen.mainScreen.bounds));
+        }else{
+            layout.itemSize = CGSizeMake(CGRectGetWidth(UIScreen.mainScreen.bounds) - 160.0, CGRectGetWidth(UIScreen.mainScreen.bounds) - 120);
+            frame = CGRectMake(0, 100, CGRectGetWidth(self.view.bounds),  CGRectGetWidth(self.view.bounds));
+        }
+        
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
         collectionView.dataSource = self;
         collectionView.delegate = self;
         collectionView.showsVerticalScrollIndicator = NO;

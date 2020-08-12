@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A76AA8D24E39F5600E9BFCD /* YLCollectionReelLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A76AA8C24E39F5600E9BFCD /* YLCollectionReelLayout.m */; };
+		1A76AA9024E3C05C00E9BFCD /* CardReelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A76AA8F24E3C05C00E9BFCD /* CardReelViewController.m */; };
 		1AE8840124E233FD00B89C29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8840024E233FD00B89C29 /* AppDelegate.m */; };
 		1AE8840724E233FD00B89C29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8840624E233FD00B89C29 /* ViewController.m */; };
 		1AE8840C24E233FE00B89C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE8840B24E233FE00B89C29 /* Assets.xcassets */; };
@@ -20,15 +22,16 @@
 		1AE8843824E235F900B89C29 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8843124E235F900B89C29 /* DataModel.m */; };
 		1AE8843B24E23FC500B89C29 /* CollectionSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8843A24E23FC500B89C29 /* CollectionSectionHeaderView.m */; };
 		1AE8849924E26A4200B89C29 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8849824E26A4200B89C29 /* CardViewController.m */; };
-		1AE8849D24E26A7300B89C29 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8849B24E26A7300B89C29 /* iCarousel.m */; };
 		1AE884A024E26D6200B89C29 /* YLCollectionCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8849F24E26D6200B89C29 /* YLCollectionCardLayout.m */; };
 		1AE884A324E26DA900B89C29 /* PinterestCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE884A224E26DA900B89C29 /* PinterestCollectionCell.m */; };
 		1AE884A624E26DEE00B89C29 /* CollectionCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE884A524E26DEE00B89C29 /* CollectionCardCell.m */; };
-		1AE884A924E2883600B89C29 /* CardViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE884A824E2883600B89C29 /* CardViewController1.m */; };
-		1AE884AC24E2983F00B89C29 /* YLCollectionCardLayout_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE884AB24E2983F00B89C29 /* YLCollectionCardLayout_1.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A76AA8B24E39F5600E9BFCD /* YLCollectionReelLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLCollectionReelLayout.h; sourceTree = "<group>"; };
+		1A76AA8C24E39F5600E9BFCD /* YLCollectionReelLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLCollectionReelLayout.m; sourceTree = "<group>"; };
+		1A76AA8E24E3C05C00E9BFCD /* CardReelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardReelViewController.h; sourceTree = "<group>"; };
+		1A76AA8F24E3C05C00E9BFCD /* CardReelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardReelViewController.m; sourceTree = "<group>"; };
 		1AE883FC24E233FC00B89C29 /* CollectionLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE883FF24E233FD00B89C29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1AE8840024E233FD00B89C29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,18 +57,12 @@
 		1AE8843A24E23FC500B89C29 /* CollectionSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionSectionHeaderView.m; sourceTree = "<group>"; };
 		1AE8849724E26A4200B89C29 /* CardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
 		1AE8849824E26A4200B89C29 /* CardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
-		1AE8849B24E26A7300B89C29 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
-		1AE8849C24E26A7300B89C29 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		1AE8849E24E26D6200B89C29 /* YLCollectionCardLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLCollectionCardLayout.h; sourceTree = "<group>"; };
 		1AE8849F24E26D6200B89C29 /* YLCollectionCardLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLCollectionCardLayout.m; sourceTree = "<group>"; };
 		1AE884A124E26DA900B89C29 /* PinterestCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinterestCollectionCell.h; sourceTree = "<group>"; };
 		1AE884A224E26DA900B89C29 /* PinterestCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PinterestCollectionCell.m; sourceTree = "<group>"; };
 		1AE884A424E26DEE00B89C29 /* CollectionCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionCardCell.h; sourceTree = "<group>"; };
 		1AE884A524E26DEE00B89C29 /* CollectionCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionCardCell.m; sourceTree = "<group>"; };
-		1AE884A724E2883600B89C29 /* CardViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardViewController1.h; sourceTree = "<group>"; };
-		1AE884A824E2883600B89C29 /* CardViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardViewController1.m; sourceTree = "<group>"; };
-		1AE884AA24E2983F00B89C29 /* YLCollectionCardLayout_1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLCollectionCardLayout_1.h; sourceTree = "<group>"; };
-		1AE884AB24E2983F00B89C29 /* YLCollectionCardLayout_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLCollectionCardLayout_1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +99,6 @@
 				1AE8840024E233FD00B89C29 /* AppDelegate.m */,
 				1AE8840524E233FD00B89C29 /* ViewController.h */,
 				1AE8840624E233FD00B89C29 /* ViewController.m */,
-				1AE8849A24E26A7300B89C29 /* iCarousel */,
 				1AE8841E24E235F900B89C29 /* ClassGroup */,
 				1AE8842E24E235F900B89C29 /* ModelGroup */,
 				1AE8840B24E233FE00B89C29 /* Assets.xcassets */,
@@ -132,8 +128,8 @@
 				1AE8842024E235F900B89C29 /* YLCollectionPinterestLayout.m */,
 				1AE8849E24E26D6200B89C29 /* YLCollectionCardLayout.h */,
 				1AE8849F24E26D6200B89C29 /* YLCollectionCardLayout.m */,
-				1AE884AA24E2983F00B89C29 /* YLCollectionCardLayout_1.h */,
-				1AE884AB24E2983F00B89C29 /* YLCollectionCardLayout_1.m */,
+				1A76AA8B24E39F5600E9BFCD /* YLCollectionReelLayout.h */,
+				1A76AA8C24E39F5600E9BFCD /* YLCollectionReelLayout.m */,
 			);
 			path = LayoutGroup;
 			sourceTree = "<group>";
@@ -147,8 +143,8 @@
 				1AE8842524E235F900B89C29 /* PinterestViewController.m */,
 				1AE8849724E26A4200B89C29 /* CardViewController.h */,
 				1AE8849824E26A4200B89C29 /* CardViewController.m */,
-				1AE884A724E2883600B89C29 /* CardViewController1.h */,
-				1AE884A824E2883600B89C29 /* CardViewController1.m */,
+				1A76AA8E24E3C05C00E9BFCD /* CardReelViewController.h */,
+				1A76AA8F24E3C05C00E9BFCD /* CardReelViewController.m */,
 			);
 			path = ControllerGroup;
 			sourceTree = "<group>";
@@ -175,15 +171,6 @@
 				1AE8843124E235F900B89C29 /* DataModel.m */,
 			);
 			path = ModelGroup;
-			sourceTree = "<group>";
-		};
-		1AE8849A24E26A7300B89C29 /* iCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				1AE8849C24E26A7300B89C29 /* iCarousel.h */,
-				1AE8849B24E26A7300B89C29 /* iCarousel.m */,
-			);
-			path = iCarousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,17 +243,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AE8840724E233FD00B89C29 /* ViewController.m in Sources */,
+				1A76AA8D24E39F5600E9BFCD /* YLCollectionReelLayout.m in Sources */,
 				1AE884A624E26DEE00B89C29 /* CollectionCardCell.m in Sources */,
 				1AE8843824E235F900B89C29 /* DataModel.m in Sources */,
+				1A76AA9024E3C05C00E9BFCD /* CardReelViewController.m in Sources */,
 				1AE8843424E235F900B89C29 /* PinterestViewController.m in Sources */,
 				1AE8843224E235F900B89C29 /* YLCollectionPinterestLayout.m in Sources */,
-				1AE8849D24E26A7300B89C29 /* iCarousel.m in Sources */,
 				1AE884A324E26DA900B89C29 /* PinterestCollectionCell.m in Sources */,
 				1AE8843524E235F900B89C29 /* AlignmentViewController.m in Sources */,
 				1AE8840124E233FD00B89C29 /* AppDelegate.m in Sources */,
 				1AE8843324E235F900B89C29 /* YLCollectionAlignmentLayout.m in Sources */,
-				1AE884A924E2883600B89C29 /* CardViewController1.m in Sources */,
-				1AE884AC24E2983F00B89C29 /* YLCollectionCardLayout_1.m in Sources */,
 				1AE8849924E26A4200B89C29 /* CardViewController.m in Sources */,
 				1AE884A024E26D6200B89C29 /* YLCollectionCardLayout.m in Sources */,
 				1AE8841224E233FE00B89C29 /* main.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "CollectionCardCell.h"
+#import "YLCollectionReelLayout.h"
 
 @interface CollectionCardCell ()
 @property (nonatomic ,strong) UIImageView *imageView;
@@ -30,6 +31,15 @@
     CGFloat contentWidth = CGRectGetWidth(self.contentView.bounds);
     self.imageView.frame = CGRectMake(0, 0, contentWidth, contentWidth);
     self.nameLable.frame = CGRectMake(0, CGRectGetMaxY(self.imageView.frame), contentWidth, 40.0);
+}
+
+- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
+    if ([layoutAttributes isKindOfClass:YLCollectionReelLayoutAttributes.class]) {
+        YLCollectionReelLayoutAttributes *reelAttributes = (YLCollectionReelLayoutAttributes *)layoutAttributes;
+        self.layer.anchorPoint = reelAttributes.anchorPoint;
+        CGFloat y = self.layer.position.y + (reelAttributes.anchorPoint.y - 0.5) * self.bounds.size.height;
+        self.layer.position = CGPointMake(self.layer.position.x, y);        
+    }
 }
 
 #pragma mark - public method

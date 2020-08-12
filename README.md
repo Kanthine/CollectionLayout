@@ -473,7 +473,7 @@ UICollectionView的布局探索
 
 ### 3、应用
 
-##### 3.1、实现瀑布流之左对齐或右对齐
+##### 3.1、左对齐或右对齐
 
 `minimumInteritemSpacing` 设置同一行的项之间的最小间距：这个间距用来计算在一行中可以容纳多少项，在确定了项的数量之后，实际的间距可能会比这个数值大；最终的结果就是`UICollectionViewCell`在`UICollectionView`两边对齐。
 
@@ -481,7 +481,23 @@ UICollectionView的布局探索
 
 
 <p align="center" >
-  <img src="https://upload-images.jianshu.io/upload_images/7112462-80e92a79645c8581.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PasswordInput" title="实现瀑布流之左对齐或右对齐">
+  <img src="https://upload-images.jianshu.io/upload_images/7112462-80e92a79645c8581.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PasswordInput" title="左对齐或右对齐">
 </p>
 
 
+![左右对齐.png](https://upload-images.jianshu.io/upload_images/7112462-6cbdc416707577e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+##### 3.2、瀑布流
+
+
+![瀑布流.png](https://upload-images.jianshu.io/upload_images/7112462-3e3ce6bbcb76a21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+##### 3.3、CoverFlow 效果
+
+![CoverFlow.png](https://upload-images.jianshu.io/upload_images/7112462-4a33486989ebcf2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+##### 3.4、 轮转效果
+
+![卡片轮转.png](https://upload-images.jianshu.io/upload_images/7112462-ae1073d6cca900b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

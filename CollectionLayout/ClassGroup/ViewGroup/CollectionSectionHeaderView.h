@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+FOUNDATION_EXPORT NSString * const kCollectionSectionHeaderIdentifer;
 @interface CollectionSectionHeaderView : UICollectionReusableView
+
+@end
+
+FOUNDATION_EXPORT NSString * const kCollectionSectionFooterIdentifer;
+@interface CollectionSectionFooterView : UICollectionReusableView
 
 @end
 

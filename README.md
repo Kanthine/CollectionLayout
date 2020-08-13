@@ -143,9 +143,11 @@ UICollectionView的布局探索
 ///  UICollectionView 调用这四个方法来确定布局信息
 
 /** 获取指定区域中所有视图（cell，supplementaryView，decorationViews）的布局属性
- * @param rect 指定区域，一般是 collectionView.bounds
+ * @param rect 指定区域
  * @discussion 重写该方法，返回所有视图的布局属性；不同类型的视图，使用不同的方法创建、管理；
  * @return 默认返回 nil
+ * @note 针对固定布局，如瀑布流等可以使用数组缓存 LayoutAttributes ，不需要再次加载创建
+ *       但是对于 cell 做的特效等场景，如卡片动画，需要实时的 LayoutAttributes，因此不能缓存，只能需要时创建！
 */
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect;
 
@@ -332,11 +334,11 @@ UICollectionView的布局探索
  */
 @property(class, nonatomic, readonly) Class invalidationContextClass API_AVAILABLE(ios(7.0));
 
-/** 询问布局对象新边界是否需要布局更新
- * @newBounds UICollectionView 的新边界
- * @return 如果 UICollectionView 需要更新布局，则返回YES；默认返回NO，不需要更改布局；
- * @discussion 如果 UICollectionView 的边界改变，并且返回YES，那么通过调用 -invalidateLayoutWithContext: 使布局无效；
- */
+/** 询问布局对象 滑动 CollectionView 时 是否需要更新布局
+ * @newBounds 滑动 UICollectionView 停止时的新边界
+ * @return 如果需要更新布局，则返回YES；默认返回NO，不需要更改布局；
+ * @discussion 如果滑动 UICollectionView 并且返回YES，那么通过调用 -invalidateLayoutWithContext: 使布局无效；
+*/
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds;
 
 /** 检索 UICollectionView.bounds 更改时对应部分的上下文对象

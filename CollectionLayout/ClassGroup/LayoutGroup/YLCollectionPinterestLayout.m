@@ -28,7 +28,7 @@
         _colunmCount = 2;
         _minimumLineSpacing = 12;//行间距
         _minimumInteritemSpacing = 12;//列间距
-        self.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        self.sectionInset = UIEdgeInsetsMake(0, 16, 20, 16);
     }
     return self;
 }
@@ -115,29 +115,29 @@
                 UICollectionViewLayoutAttributes * attrs = [self layoutAttributesForItemAtIndexPath:indexPath];
                 [self.attrsArray addObject:attrs];
             }
+            
+            //计算分区尾部高度
+            UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionIndex]];
+            [self.attrsArray addObject:footerAttributes];
         }
     }
 }
 
-/** 返回 SupplementaryView 的布局属性
- * @discussion 如果 CollectionView 使用了SupplementaryView，则必须重写此方法并返回这些视图的布局信息；
- * @param elementKind 视图 SupplementaryView 类型
- *                    UICollectionElementKindSectionFooter
- *                    UICollectionElementKindSectionHeader
- * @param indexPath 索引
- */
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"elementKind ===== %@",elementKind);
     if (self.delegate && [self.delegate respondsToSelector:@selector(YLLayout:elementOfKind:referenceSizeInSection:)]) {
         UICollectionViewLayoutAttributes *attri = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
         NSInteger section = indexPath.section;
         CGSize size = [self.delegate YLLayout:self elementOfKind:elementKind referenceSizeInSection:indexPath.section];
-        NSNumber *maxValue = [self.columnHeightArray valueForKeyPath:@"@max.self"];
-        CGFloat supplementaryViewY = maxValue.doubleValue;
-        if (section > 0 && [elementKind isEqualToString:UICollectionElementKindSectionHeader]) {//分区头部间距
-            supplementaryViewY = maxValue.doubleValue + [self edgeInsetsForSection:section - 1].bottom;
+        CGFloat maxY = ((NSNumber *)[self.columnHeightArray valueForKeyPath:@"@max.self"]).doubleValue;
+        if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+            attri.frame = CGRectMake(0, maxY, size.width, size.height);
+            maxY = CGRectGetMaxY(attri.frame) + [self edgeInsetsForSection:section].top;
+        }else{
+            maxY += [self edgeInsetsForSection:section].bottom;
+            attri.frame = CGRectMake(0, maxY, size.width, size.height);
+            maxY = CGRectGetMaxY(attri.frame);
         }
-        attri.frame = CGRectMake(0, supplementaryViewY, size.width, size.height);
-        CGFloat maxY = CGRectGetMaxY(attri.frame);
         for (int i = 0; i < self.columnHeightArray.count; i ++) {
             self.columnHeightArray[i] = @(maxY);
         }
@@ -198,8 +198,12 @@
  */
 - (CGSize)collectionViewContentSize{
     if (self.columnHeightArray.count) {
+        CGFloat adjustedSpace = 0;
+        if (@available(iOS 11.0, *)) {
+            adjustedSpace = self.collectionView.adjustedContentInset.top + self.collectionView.adjustedContentInset.bottom;
+        }
         CGFloat maxValue = [[self.columnHeightArray valueForKeyPath:@"@max.self"] doubleValue];
-        return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), maxValue + self.sectionInset.bottom);
+        return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), maxValue + adjustedSpace);
     }else{
         return [super collectionViewContentSize];
     }

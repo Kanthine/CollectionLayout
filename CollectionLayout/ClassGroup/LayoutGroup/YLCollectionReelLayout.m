@@ -93,6 +93,7 @@
     return CGPointMake(multiplier * self.anglePerItem / factor, proposedContentOffset.y);
 }
 
+///询问布局对象 滑动 CollectionView 时 是否需要更新布局
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     return YES;
 }

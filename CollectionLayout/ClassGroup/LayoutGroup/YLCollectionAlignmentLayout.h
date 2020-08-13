@@ -12,8 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger,YLCollectionAlignment) {
-    YLCollectionAlignmentDefault = 0,//默认: 两边对齐
-    YLCollectionAlignmentLeft,//左对齐
+    YLCollectionAlignmentLeft = 0,//左对齐
     YLCollectionAlignmentRight//右对齐
 };
 

@@ -5,7 +5,6 @@
 //  Created by 苏沫离 on 2020/8/10.
 //  Copyright © 2020 苏沫离. All rights reserved.
 //
-#define HeaderIdentifer @"CollectionSectionHeaderView"
 #define CellIdentifer @"PinterestCollectionCell"
 
 
@@ -41,7 +40,7 @@ YLCollectionPinterestLayoutDelegate>
     if ([elementOfKind isEqualToString:UICollectionElementKindSectionHeader]) {
         return CGSizeMake(CGRectGetWidth(UIScreen.mainScreen.bounds), 172 / 375.0 * CGRectGetWidth(UIScreen.mainScreen.bounds));
     }
-    return CGSizeZero;
+    return CGSizeMake(CGRectGetWidth(UIScreen.mainScreen.bounds), 0.1);
 }
 
 - (CGFloat)YLLayout:(YLCollectionPinterestLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath itemWidth:(CGFloat)itemWidth{
@@ -60,8 +59,12 @@ YLCollectionPinterestLayoutDelegate>
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    CollectionSectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderIdentifer forIndexPath:indexPath];
-    return headerView;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        CollectionSectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kCollectionSectionHeaderIdentifer forIndexPath:indexPath];
+        return headerView;
+    }
+    CollectionSectionFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kCollectionSectionFooterIdentifer forIndexPath:indexPath];
+    return footerView;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -84,8 +87,6 @@ YLCollectionPinterestLayoutDelegate>
         YLCollectionPinterestLayout *layout = [[YLCollectionPinterestLayout alloc] init];
         CGFloat width = (CGRectGetWidth(UIScreen.mainScreen.bounds) - 16 * 2.0 - 12) / 2.0;
         layout.itemSize = CGSizeMake(width, 123 / 165.0 * width + 24);
-        layout.minimumInteritemSpacing = 12;
-        layout.sectionInset = UIEdgeInsetsMake(0, 16, 20, 16);
         layout.delegate = self;
 
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
@@ -93,8 +94,8 @@ YLCollectionPinterestLayoutDelegate>
         collectionView.delegate = self;
         collectionView.showsVerticalScrollIndicator = NO;
         collectionView.showsHorizontalScrollIndicator = NO;
-        
-        [collectionView registerClass:CollectionSectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderIdentifer];
+        [collectionView registerClass:CollectionSectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kCollectionSectionHeaderIdentifer];
+        [collectionView registerClass:CollectionSectionFooterView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kCollectionSectionFooterIdentifer];
         [collectionView registerClass:PinterestCollectionCell.class forCellWithReuseIdentifier:CellIdentifer];
         collectionView.backgroundColor = UIColor.whiteColor;
         _collectionView = collectionView;

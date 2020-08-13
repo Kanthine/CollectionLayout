@@ -8,6 +8,7 @@
 
 #import "CollectionSectionHeaderView.h"
 
+NSString * const kCollectionSectionHeaderIdentifer = @"CollectionSectionHeaderView";
 @interface CollectionSectionHeaderView ()
 @property (nonatomic ,strong) UIImageView *imageView;
 @end
@@ -19,6 +20,21 @@
         _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dub_header_back"]];
         _imageView.frame = CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 172 / 375.0 * CGRectGetWidth(UIScreen.mainScreen.bounds));
         [self addSubview:_imageView];
+    }
+    return self;
+}
+
+@end
+
+
+
+
+NSString * const kCollectionSectionFooterIdentifer = @"CollectionSectionFooterView";
+@implementation CollectionSectionFooterView
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = UIColor.whiteColor;
     }
     return self;
 }

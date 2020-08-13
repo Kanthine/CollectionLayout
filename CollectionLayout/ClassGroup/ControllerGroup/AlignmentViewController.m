@@ -5,7 +5,8 @@
 //  Created by 苏沫离 on 2018/9/8.
 //  Copyright © 2020 苏沫离. All rights reserved.
 //
-#define HeaderIdentifer @"CollectionSectionHeaderView"
+
+#define CellIdentifer @"CollectionAlignmentCell"
 
 #import "AlignmentViewController.h"
 #import "CollectionAlignmentCell.h"
@@ -28,6 +29,11 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButton];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.collectionView.frame = self.view.bounds;
+}
+
 #pragma mark - response click
 
 - (void)rightBarButtonItemClick:(UIButton *)sender{
@@ -36,12 +42,10 @@
         [sender setTitle:@"左对齐" forState:UIControlStateNormal];
         flowLayout.cellAlignmentType = YLCollectionAlignmentLeft;
     }else if ([sender.titleLabel.text isEqualToString:@"左对齐"]){
-        [sender setTitle:@"默认" forState:UIControlStateNormal];
-        flowLayout.cellAlignmentType = YLCollectionAlignmentDefault;
-    }else if ([sender.titleLabel.text isEqualToString:@"默认"]){
         [sender setTitle:@"右对齐" forState:UIControlStateNormal];
         flowLayout.cellAlignmentType = YLCollectionAlignmentRight;
     }
+    [self.collectionView reloadData];
 }
 
 #pragma mark - YLAlignmentFlowLayoutDelegate
@@ -60,7 +64,7 @@
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -68,14 +72,22 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    CollectionSectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderIdentifer forIndexPath:indexPath];
-    return headerView;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        CollectionSectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kCollectionSectionHeaderIdentifer forIndexPath:indexPath];
+        return headerView;
+    }
+    CollectionSectionFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kCollectionSectionFooterIdentifer forIndexPath:indexPath];
+    return footerView;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CollectionAlignmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(CollectionAlignmentCell.class) forIndexPath:indexPath];
+    CollectionAlignmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifer forIndexPath:indexPath];
     cell.itemLable.text = self.dataArray[indexPath.row].title;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [collectionView reloadData];
 }
 
 #pragma mark - public method
@@ -92,7 +104,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.titleLabel.font = [UIFont systemFontOfSize:16];
         [button setTitleColor:UIColor.redColor forState:UIControlStateNormal];
-        [button setTitle:@"右对齐" forState:UIControlStateNormal];
+        [button setTitle:@"左对齐" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(rightBarButtonItemClick:) forControlEvents:UIControlEventTouchUpInside];
         _rightButton = button;
     }
@@ -109,22 +121,21 @@
 - (UICollectionView *)collectionView{
     if (_collectionView == nil){
         YLCollectionAlignmentLayout *flowLayout = [[YLCollectionAlignmentLayout alloc] init];
-        flowLayout.alignmentDelegate = self;
-        flowLayout.cellAlignmentType = YLCollectionAlignmentRight;
-        flowLayout.minimumLineSpacing = 16;//行间距
-        flowLayout.minimumInteritemSpacing = 16;//列间距
-            
-    
+         flowLayout.alignmentDelegate = self;
+         flowLayout.cellAlignmentType = YLCollectionAlignmentLeft;
+         flowLayout.minimumLineSpacing = 16;//行间距
+         flowLayout.minimumInteritemSpacing = 16;//列间距
+         flowLayout.sectionInset = UIEdgeInsetsMake(0, 12, 20, 12);
+        
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0,CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) collectionViewLayout:flowLayout];
-        _collectionView.contentInset = UIEdgeInsetsMake(12, 12, 12, 12);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
-        [_collectionView registerClass:[CollectionAlignmentCell class] forCellWithReuseIdentifier:NSStringFromClass(CollectionAlignmentCell.class)];
-        [_collectionView registerClass:CollectionSectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderIdentifer];
-
+        [_collectionView registerClass:[CollectionAlignmentCell class] forCellWithReuseIdentifier:CellIdentifer];
+        [_collectionView registerClass:CollectionSectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kCollectionSectionHeaderIdentifer];
+        [_collectionView registerClass:CollectionSectionFooterView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kCollectionSectionFooterIdentifer];
     }
     return _collectionView;
 }

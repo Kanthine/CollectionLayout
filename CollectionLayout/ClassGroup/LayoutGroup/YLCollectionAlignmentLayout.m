@@ -9,6 +9,8 @@
 #import "YLCollectionAlignmentLayout.h"
 
 @interface YLCollectionAlignmentLayout ()
+
+@property (nonatomic, assign) CGFloat current_Y;
 @property (nonatomic, strong) NSMutableArray<UICollectionViewLayoutAttributes *> *attributesArray;
 @end
 
@@ -16,124 +18,117 @@
 
 #pragma mark - super method
 
-///使当前布局失效并触发布局更新
-//- (void)invalidateLayout{
-//    [super invalidateLayout];
-//
-//    [self prepareLayout];
-//}
-
-//- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds{
-//    return YES;
-//}
-//
-//- (BOOL)shouldInvalidateLayoutForPreferredLayoutAttributes:(UICollectionViewLayoutAttributes *)preferredAttributes withOriginalAttributes:(UICollectionViewLayoutAttributes *)originalAttributes{
-//    return YES;
-//}
-
 /** 当布局改变时，首先调用方法为更新视图做一些准备工作
  */
 - (void)prepareLayout{
     [super prepareLayout];
-    
     NSLog(@"cellAlignmentType ------ %ld",self.cellAlignmentType);
-    
-    if (self.cellAlignmentType == YLCollectionAlignmentDefault) {
-        return;
-    }
-    
+    _current_Y = 0;
     [self.attributesArray removeAllObjects];
     
     //遍历分区
     for (int sectionIndex = 0; sectionIndex < self.collectionView.numberOfSections; sectionIndex ++){
+        //计算分区头部高度
+        UICollectionViewLayoutAttributes *headerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionIndex]];
+        [self.attributesArray addObject:headerAttributes];
+        
         //添加item属性
+        UICollectionViewLayoutAttributes *previousAttributes = nil;
         NSInteger itemCount = [self.collectionView numberOfItemsInSection:sectionIndex];
         for (int rowIndex = 0; rowIndex < itemCount; rowIndex ++){
             // 创建位置
-            NSIndexPath * indexPath = [NSIndexPath indexPathForItem:rowIndex inSection:sectionIndex];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:rowIndex inSection:sectionIndex];
             // 获取indexPath位置上cell对应的布局属性
-            UICollectionViewLayoutAttributes * attrs = [self layoutAttributesForItemAtIndexPath:indexPath];
-            [self.attributesArray addObject:attrs];
+            previousAttributes = [self layoutAttributesForItemAtIndexPath:indexPath previousAttributes:previousAttributes];
+            [self.attributesArray addObject:previousAttributes];
         }
+        
+        //计算分区尾部高度
+        UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionIndex]];
+        [self.attributesArray addObject:footerAttributes];
     }
 }
 
-/** 获取指定视图的布局属性
- */
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
-    if (self.cellAlignmentType == YLCollectionAlignmentDefault) {
-        return [super layoutAttributesForSupplementaryViewOfKind:elementKind atIndexPath:indexPath];
+    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+    
+    CGSize size;
+    if (self.alignmentDelegate && [self.alignmentDelegate respondsToSelector:@selector(collectionViewElementOfKind:referenceSizeInSection:)]) {
+        size = [self.alignmentDelegate collectionViewElementOfKind:elementKind referenceSizeInSection:indexPath.section];
+    }else{
+        size = [elementKind isEqualToString:UICollectionElementKindSectionHeader] ? self.headerReferenceSize : self.footerReferenceSize;
     }
-    UICollectionViewLayoutAttributes *headerAttrs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:indexPath];
-    headerAttrs.frame = CGRectZero;
-    return headerAttrs;
+    
+    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+        attributes.frame = CGRectMake(0, _current_Y, size.width, size.height);
+        self.current_Y = CGRectGetMaxY(attributes.frame) + self.sectionInset.top;
+    }else{
+        self.current_Y += self.sectionInset.bottom;
+        attributes.frame = CGRectMake(0, _current_Y, size.width, size.height);
+        self.current_Y = CGRectGetMaxY(attributes.frame);
+    }
+    return attributes;
 }
 
 /** 获取指定 UICollectionViewCell 的布局属性
  * @param indexPath 指定位置
+ * @param previousAttributes 前一个布局属性，
+ * @note 如果 indexPath.row = 0,则 previousAttributes = nil
  */
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.cellAlignmentType == YLCollectionAlignmentDefault) {
-        return [super layoutAttributesForItemAtIndexPath:indexPath];
-    }
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath previousAttributes:(UICollectionViewLayoutAttributes *)previousAttributes{
+    
+    CGSize cellSize = [self.alignmentDelegate collectionViewSizeForItemAtIndexPath:indexPath];//拿到 cell 的 size
     
     UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];//创建一个布局属性
-    CGSize cellSize = [self.alignmentDelegate collectionViewSizeForItemAtIndexPath:indexPath];//拿到 cell 的 size
-    CGPoint startPoint = CGPointZero;
+    CGPoint startPoint = CGPointMake(self.sectionInset.left, _current_Y);
     if (self.cellAlignmentType == YLCollectionAlignmentLeft){
-        if (indexPath.row > 0){
-            
-            UICollectionViewLayoutAttributes *prevLayoutAttributes;//前一个布局
-            if (self.attributesArray.count > indexPath.row - 1) {
-                prevLayoutAttributes = self.attributesArray[indexPath.row -1];
-            }else{
-                prevLayoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section]];
-            }
-            
-            if (CGRectGetMaxX(prevLayoutAttributes.frame) + cellSize.width + self.minimumInteritemSpacing < self.collectionViewContentSize.width){
-                startPoint = CGPointMake(CGRectGetMaxX(prevLayoutAttributes.frame) + self.minimumInteritemSpacing, prevLayoutAttributes.frame.origin.y);
+        if (previousAttributes){
+            if (CGRectGetMaxX(previousAttributes.frame) + cellSize.width + self.minimumInteritemSpacing < self.collectionViewContentSize.width){
+                startPoint = CGPointMake(CGRectGetMaxX(previousAttributes.frame) + self.minimumInteritemSpacing, previousAttributes.frame.origin.y);
             }else{
                 //重启一行
-                startPoint = CGPointMake(0, CGRectGetMaxY(prevLayoutAttributes.frame) + self.minimumLineSpacing);//垂直间距
+                startPoint = CGPointMake(self.sectionInset.left, CGRectGetMaxY(previousAttributes.frame) + self.minimumLineSpacing);//垂直间距
             }
         }else{
-            startPoint = CGPointMake(0, 0);
+            startPoint = CGPointMake(self.sectionInset.left, _current_Y);
         }
         
     }else if (self.cellAlignmentType == YLCollectionAlignmentRight){//右对齐
-        if (indexPath.row > 0){
-            
-            UICollectionViewLayoutAttributes *prevLayoutAttributes;//前一个布局
-            if (self.attributesArray.count > indexPath.row - 1) {
-                prevLayoutAttributes = self.attributesArray[indexPath.row -1];
-            }else{
-                prevLayoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section]];
-            }
-            
-            if (cellSize.width + self.minimumInteritemSpacing < prevLayoutAttributes.frame.origin.x){
-                startPoint = CGPointMake(prevLayoutAttributes.frame.origin.x - self.minimumInteritemSpacing - cellSize.width, prevLayoutAttributes.frame.origin.y);
+        if (previousAttributes){
+            if (cellSize.width + self.minimumInteritemSpacing < previousAttributes.frame.origin.x){
+                startPoint = CGPointMake(previousAttributes.frame.origin.x - self.minimumInteritemSpacing - cellSize.width, previousAttributes.frame.origin.y);
             }else{
                 //重启一行
-                startPoint = CGPointMake(self.collectionViewContentSize.width - cellSize.width, CGRectGetMaxY(prevLayoutAttributes.frame) + self.minimumLineSpacing);
+                startPoint = CGPointMake(self.collectionViewContentSize.width - cellSize.width - self.sectionInset.right, CGRectGetMaxY(previousAttributes.frame) + self.minimumLineSpacing);
             }
         }else{
-            startPoint = CGPointMake(self.collectionViewContentSize.width - cellSize.width, 0);
+            startPoint = CGPointMake(self.collectionViewContentSize.width - cellSize.width - self.sectionInset.right, _current_Y);
         }
     }
+    
     layoutAttributes.frame = CGRectMake(startPoint.x, startPoint.y, cellSize.width, cellSize.height);
+    
+    self.current_Y = MAX(CGRectGetMaxY(layoutAttributes.frame), _current_Y);
     return layoutAttributes;
 }
 
-/** 返回指定区域中所有单元格和视图的布局属性。
+/** 获取指定区域中所有视图（cell，supplementaryView，decorationViews）的布局属性
  * @param rect 指定区域
+ * @discussion 重写该方法，返回所有视图的布局属性；不同类型的视图，使用不同的方法创建、管理；
  * @return 默认返回 nil
- * @note 必须重写此方法，返回视图指定区域的所有布局信息。
- */
+ * @note 针对固定布局，如瀑布流等可以使用数组缓存 LayoutAttributes ，不需要再次加载创建
+ *       但是对于 cell 做的特效等场景，如卡片动画，需要实时的 LayoutAttributes，因此不能缓存，只能需要时创建！
+*/
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
-    if (self.cellAlignmentType == YLCollectionAlignmentDefault) {
-        return [super layoutAttributesForElementsInRect:rect];
-    }
     return self.attributesArray;
+}
+
+- (CGSize)collectionViewContentSize{
+    CGFloat adjustedSpace = 0;
+    if (@available(iOS 11.0, *)) {
+        adjustedSpace = self.collectionView.adjustedContentInset.top + self.collectionView.adjustedContentInset.bottom;
+    }
+    return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), _current_Y + adjustedSpace);
 }
 
 #pragma mark - setter and getter
@@ -142,12 +137,12 @@
     if (_cellAlignmentType != cellAlignmentType) {
         _cellAlignmentType = cellAlignmentType;
         [self invalidateLayout];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
-            NSLog(@"cellAlignmentType ==4=== %ld",self->_cellAlignmentType);
-        });
-        NSLog(@"cellAlignmentType ==2=== %ld",_cellAlignmentType);
+        NSLog(@"cellAlignmentType ===== %ld",_cellAlignmentType);
     }
+}
+
+- (void)setCurrent_Y:(CGFloat)current_Y{
+    _current_Y = current_Y;
 }
 
 - (NSMutableArray<UICollectionViewLayoutAttributes *> *)attributesArray{

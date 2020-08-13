@@ -45,7 +45,6 @@
         [sender setTitle:@"右对齐" forState:UIControlStateNormal];
         flowLayout.cellAlignmentType = YLCollectionAlignmentRight;
     }
-    [self.collectionView reloadData];
 }
 
 #pragma mark - YLAlignmentFlowLayoutDelegate
@@ -86,15 +85,11 @@
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [collectionView reloadData];
-}
-
 #pragma mark - public method
 
 - (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{
     self.dataArray = dataArray;
-    [self.collectionView reloadData];
+    [_collectionView reloadData];
 }
 
 #pragma mark - setter and getter
@@ -126,17 +121,19 @@
          flowLayout.minimumLineSpacing = 16;//行间距
          flowLayout.minimumInteritemSpacing = 16;//列间距
          flowLayout.sectionInset = UIEdgeInsetsMake(0, 12, 20, 12);
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0,CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) collectionViewLayout:flowLayout];
-        _collectionView.showsVerticalScrollIndicator = NO;
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        [_collectionView registerClass:[CollectionAlignmentCell class] forCellWithReuseIdentifier:CellIdentifer];
-        [_collectionView registerClass:CollectionSectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kCollectionSectionHeaderIdentifer];
-        [_collectionView registerClass:CollectionSectionFooterView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kCollectionSectionFooterIdentifer];
+
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0,CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) collectionViewLayout:flowLayout];
+        collectionView.showsVerticalScrollIndicator = NO;
+        collectionView.showsHorizontalScrollIndicator = NO;
+        collectionView.delegate = self;
+        collectionView.dataSource = self;
+        collectionView.backgroundColor = [UIColor whiteColor];
+        [collectionView registerClass:[CollectionAlignmentCell class] forCellWithReuseIdentifier:CellIdentifer];
+        [collectionView registerClass:CollectionSectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kCollectionSectionHeaderIdentifer];
+        [collectionView registerClass:CollectionSectionFooterView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kCollectionSectionFooterIdentifer];
+        _collectionView = collectionView;
     }
+
     return _collectionView;
 }
 

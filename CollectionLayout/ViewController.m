@@ -63,8 +63,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UIViewController *vc = [[NSClassFromString(self.itemArray[indexPath.row].allValues.firstObject) alloc] init];
     vc.navigationItem.title = self.itemArray[indexPath.row].allKeys.firstObject;
-    [vc reloadData:self.dataArray];
     [self.navigationController pushViewController:vc animated:YES];
+    [vc reloadData:self.dataArray];
 }
 
 #pragma mark - setter and getter

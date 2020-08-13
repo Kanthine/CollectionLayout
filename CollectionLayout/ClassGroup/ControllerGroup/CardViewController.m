@@ -46,7 +46,7 @@
         }
     }
     // 定位到 第50组(中间那组)
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:100 / 2 * count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:100 / 2 * count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 #pragma mark - UICollectionViewDelegate

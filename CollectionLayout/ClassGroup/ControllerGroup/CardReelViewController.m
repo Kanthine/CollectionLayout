@@ -38,7 +38,7 @@
 
 - (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{
     self.dataArray = dataArray;
-    [self.collectionView reloadData];
+    [_collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegate

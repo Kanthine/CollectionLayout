@@ -22,7 +22,6 @@
  */
 - (void)prepareLayout{
     [super prepareLayout];
-    NSLog(@"cellAlignmentType ------ %ld",self.cellAlignmentType);
     _current_Y = 0;
     [self.attributesArray removeAllObjects];
     
@@ -137,7 +136,6 @@
     if (_cellAlignmentType != cellAlignmentType) {
         _cellAlignmentType = cellAlignmentType;
         [self invalidateLayout];
-        NSLog(@"cellAlignmentType ===== %ld",_cellAlignmentType);
     }
 }
 

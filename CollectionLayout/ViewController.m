@@ -32,8 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.collectionView];
+    self.navigationItem.title = @"Flow Layout";
     
+    [self.view addSubview:self.collectionView];
     [DataModel creatDemoData:^(NSMutableArray<DataModel *> * _Nonnull array) {
         self.dataArray = array;
     }];
@@ -76,6 +77,7 @@
         [_itemArray addObject:@{@"瀑布流":@"PinterestViewController"}];
         [_itemArray addObject:@{@"卡片覆盖效果":@"CardViewController"}];
         [_itemArray addObject:@{@"卡片轮转效果":@"CardReelViewController"}];
+        [_itemArray addObject:@{@"过渡动画":@"TransitionAnimationViewController"}];
     }
     return _itemArray;
 }

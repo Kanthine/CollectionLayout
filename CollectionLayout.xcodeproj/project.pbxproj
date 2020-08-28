@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A4CC4FD24F89B0300AC93C2 /* YLCollectionTransitionAnimationLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CC4FC24F89B0300AC93C2 /* YLCollectionTransitionAnimationLayout.m */; };
+		1A4CC50024F8A1A000AC93C2 /* TransitionAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CC4FF24F8A1A000AC93C2 /* TransitionAnimationViewController.m */; };
+		1A4CC50324F8A9D100AC93C2 /* CollectionTransitionAnimationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CC50224F8A9D100AC93C2 /* CollectionTransitionAnimationCell.m */; };
 		1A76AA8D24E39F5600E9BFCD /* YLCollectionReelLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A76AA8C24E39F5600E9BFCD /* YLCollectionReelLayout.m */; };
 		1A76AA9024E3C05C00E9BFCD /* CardReelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A76AA8F24E3C05C00E9BFCD /* CardReelViewController.m */; };
 		1AE8840124E233FD00B89C29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8840024E233FD00B89C29 /* AppDelegate.m */; };
@@ -28,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A4CC4FB24F89B0300AC93C2 /* YLCollectionTransitionAnimationLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLCollectionTransitionAnimationLayout.h; sourceTree = "<group>"; };
+		1A4CC4FC24F89B0300AC93C2 /* YLCollectionTransitionAnimationLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLCollectionTransitionAnimationLayout.m; sourceTree = "<group>"; };
+		1A4CC4FE24F8A1A000AC93C2 /* TransitionAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionAnimationViewController.h; sourceTree = "<group>"; };
+		1A4CC4FF24F8A1A000AC93C2 /* TransitionAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionAnimationViewController.m; sourceTree = "<group>"; };
+		1A4CC50124F8A9D100AC93C2 /* CollectionTransitionAnimationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionTransitionAnimationCell.h; sourceTree = "<group>"; };
+		1A4CC50224F8A9D100AC93C2 /* CollectionTransitionAnimationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionTransitionAnimationCell.m; sourceTree = "<group>"; };
 		1A76AA8B24E39F5600E9BFCD /* YLCollectionReelLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLCollectionReelLayout.h; sourceTree = "<group>"; };
 		1A76AA8C24E39F5600E9BFCD /* YLCollectionReelLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLCollectionReelLayout.m; sourceTree = "<group>"; };
 		1A76AA8E24E3C05C00E9BFCD /* CardReelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardReelViewController.h; sourceTree = "<group>"; };
@@ -130,6 +139,8 @@
 				1AE8849F24E26D6200B89C29 /* YLCollectionCardLayout.m */,
 				1A76AA8B24E39F5600E9BFCD /* YLCollectionReelLayout.h */,
 				1A76AA8C24E39F5600E9BFCD /* YLCollectionReelLayout.m */,
+				1A4CC4FB24F89B0300AC93C2 /* YLCollectionTransitionAnimationLayout.h */,
+				1A4CC4FC24F89B0300AC93C2 /* YLCollectionTransitionAnimationLayout.m */,
 			);
 			path = LayoutGroup;
 			sourceTree = "<group>";
@@ -145,6 +156,8 @@
 				1AE8849824E26A4200B89C29 /* CardViewController.m */,
 				1A76AA8E24E3C05C00E9BFCD /* CardReelViewController.h */,
 				1A76AA8F24E3C05C00E9BFCD /* CardReelViewController.m */,
+				1A4CC4FE24F8A1A000AC93C2 /* TransitionAnimationViewController.h */,
+				1A4CC4FF24F8A1A000AC93C2 /* TransitionAnimationViewController.m */,
 			);
 			path = ControllerGroup;
 			sourceTree = "<group>";
@@ -154,6 +167,8 @@
 			children = (
 				1AE8842D24E235F900B89C29 /* CollectionAlignmentCell.h */,
 				1AE8842B24E235F900B89C29 /* CollectionAlignmentCell.m */,
+				1A4CC50124F8A9D100AC93C2 /* CollectionTransitionAnimationCell.h */,
+				1A4CC50224F8A9D100AC93C2 /* CollectionTransitionAnimationCell.m */,
 				1AE884A424E26DEE00B89C29 /* CollectionCardCell.h */,
 				1AE884A524E26DEE00B89C29 /* CollectionCardCell.m */,
 				1AE884A124E26DA900B89C29 /* PinterestCollectionCell.h */,
@@ -244,6 +259,7 @@
 			files = (
 				1AE8840724E233FD00B89C29 /* ViewController.m in Sources */,
 				1A76AA8D24E39F5600E9BFCD /* YLCollectionReelLayout.m in Sources */,
+				1A4CC50024F8A1A000AC93C2 /* TransitionAnimationViewController.m in Sources */,
 				1AE884A624E26DEE00B89C29 /* CollectionCardCell.m in Sources */,
 				1AE8843824E235F900B89C29 /* DataModel.m in Sources */,
 				1A76AA9024E3C05C00E9BFCD /* CardReelViewController.m in Sources */,
@@ -253,6 +269,8 @@
 				1AE8843524E235F900B89C29 /* AlignmentViewController.m in Sources */,
 				1AE8840124E233FD00B89C29 /* AppDelegate.m in Sources */,
 				1AE8843324E235F900B89C29 /* YLCollectionAlignmentLayout.m in Sources */,
+				1A4CC4FD24F89B0300AC93C2 /* YLCollectionTransitionAnimationLayout.m in Sources */,
+				1A4CC50324F8A9D100AC93C2 /* CollectionTransitionAnimationCell.m in Sources */,
 				1AE8849924E26A4200B89C29 /* CardViewController.m in Sources */,
 				1AE884A024E26D6200B89C29 /* YLCollectionCardLayout.m in Sources */,
 				1AE8841224E233FE00B89C29 /* main.m in Sources */,

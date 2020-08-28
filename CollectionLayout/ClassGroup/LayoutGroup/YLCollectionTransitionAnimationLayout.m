@@ -17,7 +17,6 @@
     if (CGPointEqualToPoint(self.layer.anchorPoint, point)) {
         return;
     }
-    
     CGPoint newPoint = CGPointMake(CGRectGetWidth(self.bounds) * point.x, CGRectGetHeight(self.bounds) * point.y);
     CGPoint oldPoint = CGPointMake(CGRectGetWidth(self.bounds) * self.layer.anchorPoint.x, CGRectGetHeight(self.bounds)  * self.layer.anchorPoint.y);
     
@@ -53,13 +52,11 @@
 
 /// Cube 动画
 @interface YLCollectionCubeAnimation : YLCollectionTransitionAnimationOperator
-
-/// The perspective that will be applied to the cells. Must be negative. -1/500 by default.
-/// Recommended range [-1/2000, -1/200].
+/// 单元格的视角; 取值范围 [-1/2000, -1/200]，默认为 -1/500
 @property (nonatomic ,assign) CGFloat perspective;
-/// The higher the angle is, the _steeper_ the cell would be when transforming.
-@property (nonatomic ,assign) CGFloat totalAngle;
 
+/// totalAngle 越大，transforming 时单元格越陡峭
+@property (nonatomic ,assign) CGFloat totalAngle;
 @end
 
 @implementation YLCollectionCubeAnimation
@@ -101,19 +98,16 @@
 @end
 
 
-/// An animator that turns the cells into card mode.
-/// - warning: You need to set `clipsToBounds` to `false` on the cell to make
-/// this effective.
+/// Card 动画
 @interface YLCollectionCardAnimation : YLCollectionTransitionAnimationOperator
 
-/// The alpha to apply on the cells that are away from the center. Should be
-/// in range [0, 1]. 0.5 by default.
+/// 将要离开屏幕的 cell 的 alpha。取值范围 [0,1]，默认为 0.5
 @property (nonatomic ,assign) CGFloat minAlpha;
 
-/// The spacing ratio between two cells. 0.4 by default.
+/// 两个 cell 之间的间距比。默认为 0.4
 @property (nonatomic ,assign) CGFloat itemSpacing;
 
-/// The scale rate that will applied to the cells to make it into a card.
+/// cell 的缩放比例
 @property (nonatomic ,assign) CGFloat scaleRate;
 
 @end
@@ -158,13 +152,14 @@
 
 /// 覆盖 动画
 @interface YLCollectionCoverAnimation : YLCollectionTransitionAnimationOperator
-/// The max scale that would be applied to the current cell. 0 means no scale. 0.2 by default.
+/// 将要离开屏幕的 cell 的缩放比例
 @property (nonatomic ,assign) CGFloat scaleRate;
 @end
 
 @implementation YLCollectionCoverAnimation
 
 - (instancetype)init{
+    /// 传递 0 不缩放
     return [self initWithScaleRate:0.2];
 }
 
@@ -198,19 +193,16 @@
 
 
 
-/// An animator that implemented the parallax effect by moving the content of the cell
-/// slower than the cell itself.
-/// 覆盖 动画
+/// 视觉差：移动 cell 的速度慢于单元格本身来实现视差效果
 @interface YLCollectionParallaxAnimation : YLCollectionTransitionAnimationOperator
-/// The higher the speed is, the more obvious the parallax.
-/// It's recommended to be in range [0, 1] where 0 means no parallax. 0.5 by default.
+/// 速度越快，视差越明显：取值范围 [0,1]；默认 0.5 ，0表示无视差
 @property (nonatomic ,assign) CGFloat speed;
 @end
 
 @implementation YLCollectionParallaxAnimation
 
 - (instancetype)init{
-    return [self initWithSpeed:0.2];
+    return [self initWithSpeed:0.5];
 }
 
 - (instancetype)initWithSpeed:(CGFloat)speed{
@@ -224,7 +216,6 @@
 - (void)transitionAnimationWithCollectionView:(UICollectionView *)collectionView attributes:(YLCollectionTransitionAnimationAttributes *)attributes{
     CGFloat position = attributes.middleOffset;
     if (fabs(position) >= 1) {
-        // Reset views that are invisible.
         attributes.contentView.frame = attributes.bounds;
     } else if (attributes.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
         CGFloat width = CGRectGetWidth(collectionView.frame);
@@ -236,10 +227,8 @@
         CGFloat height = CGRectGetHeight(collectionView.frame);
         CGFloat transitionY = -(height * self.speed * position);
         CGAffineTransform transform = CGAffineTransformMakeTranslation(0, transitionY);
-        // By default, the content view takes all space in the cell
         CGRect newFrame = CGRectApplyAffineTransform(attributes.bounds, transform);
-        // We don't use transform here since there's an issue if layoutSubviews is called
-        // for every cell due to layout changes in binding method.
+        // 不使用 attributes.transform，因为如果在绑定方法中由于布局变化而对每个单元格调用 - layoutSubviews 会有问题
         attributes.contentView.frame = newFrame;
     }
 }
@@ -247,7 +236,7 @@
 @end
 
 
-
+/// CrossFade 效果
 @interface YLCollectionCrossFadeAnimation : YLCollectionTransitionAnimationOperator
 @end
 @implementation YLCollectionCrossFadeAnimation
@@ -260,15 +249,13 @@
 @end
 
 
-/// An animator that rotating the cell in/out when you scroll.
+/// 旋转效果
 @interface YLCollectionRotateInOutAnimation : YLCollectionTransitionAnimationOperator
 
-/// The alpha to apply on the cells that are away from the center. Should be
-/// in range [0, 1]. 0 by default.
+/// 离开屏幕的 cell 的 alpha，取值范围 [0, 1]. ，默认值 0
 @property (nonatomic ,assign) CGFloat minAlpha;
 
-/// The max rotating angle that would be applied to the cell. Should be in
-/// range [0, 2pi]. PI/4 by default.
+/// 离开屏幕的 cell 的旋转角度，取值范围 [0, M_PI * 2.0] ，默认值 M_PI_4
 @property (nonatomic ,assign) CGFloat maxRotate;
 
 @end
@@ -278,7 +265,7 @@
 - (instancetype)init{
     return [self initWithMinAlpha: 0.0 maxRotate:M_PI_4];
 }
-//perspective: -0.002, totalAngle: 1.5707963267948966))
+
 - (instancetype)initWithMinAlpha:(CGFloat)minAlpha maxRotate:(CGFloat)maxRotate{
     self = [super init];
     if (self) {
@@ -306,11 +293,10 @@
 
 
 
-/// An animator that zoom in/out cells when you scroll.
+/// 放大或缩小效果
 @interface YLCollectionZoomInOutAnimation : YLCollectionTransitionAnimationOperator
 
-/// The scaleRate decides the maximum scale rate where 0 means no scale and
-/// 1 means the cell will disappear at min. 0.2 by default.
+/// 缩放比率，1 表示 cell 在最小时消失。默认 0.2
 @property (nonatomic ,assign) CGFloat scaleRate;
 
 @end
@@ -393,7 +379,7 @@
         self.sectionInset = UIEdgeInsetsZero;
         self.minimumLineSpacing = 0.0;
         self.minimumInteritemSpacing = 0.0;
-        self.transitionType = YLCollectionTransitionCard;
+        self.transitionType = YLCollectionTransitionCover;
     }
     return self;
 }
@@ -477,10 +463,5 @@
     }];
     return attributesArray;
 }
-//The ratio of the distance between the start of the cell and the start of the collectionView and the height/width of the cell depending on the scrollDirection.
-//It's 0 when the start of the cell aligns the start of the collectionView.
-//It gets positive when the cell moves towards the scrolling direction (right/down) while getting negative when moves opposite.
-/// 单元格的开始和collectionView的开始之间的距离与单元格的高度/宽度的比率取决于滚动方向。
-/// 当单元格的开始与collectionView的开始对齐时，它是0。当单元格向滚动方向移动(右/下)时，它为正，而当相反方向移动时，它为负。
 
 @end

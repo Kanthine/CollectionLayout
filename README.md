@@ -3,36 +3,13 @@ UICollectionView的特效
 
 ### 应用
 
-##### 左对齐或右对齐
-
-<p align="center" >
-  <img src="https://upload-images.jianshu.io/upload_images/7112462-6cbdc416707577e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左右对齐" title="左对齐或右对齐">
-</p>
-
-
-
-#####  瀑布流
+左\右对齐|瀑布流
+:-: |:-:
+![左\右对齐.gif](https://upload-images.jianshu.io/upload_images/7112462-602eb8480af4b6b8.gif?imageMogr2/auto-orient/strip)|![瀑布流.png](https://upload-images.jianshu.io/upload_images/7112462-3e3ce6bbcb76a21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+卡片覆盖|卡片轮转效果
+![卡片覆盖.gif](https://upload-images.jianshu.io/upload_images/7112462-65cd958fc4a69ee2.gif?imageMogr2/auto-orient/strip)|![卡片轮转效果.gif](https://upload-images.jianshu.io/upload_images/7112462-976ecfc01b30983a.gif?imageMogr2/auto-orient/strip)
 
 
-<p align="center" >
-  <img src="https://upload-images.jianshu.io/upload_images/7112462-3e3ce6bbcb76a21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="瀑布流" title="瀑布流">
-</p>
-
-
-##### CoverFlow 效果
-
-
-<p align="center" >
-  <img src="https://upload-images.jianshu.io/upload_images/7112462-4a33486989ebcf2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CoverFlow" title="CoverFlow">
-</p>
-
-
-#####  轮转效果
-
-
-<p align="center" >
-  <img src="https://upload-images.jianshu.io/upload_images/7112462-ae1073d6cca900b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="卡片轮转." title="卡片轮转.">
-</p>
 
 
 

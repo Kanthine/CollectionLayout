@@ -431,15 +431,8 @@
     NSArray<YLCollectionTransitionAnimationAttributes *> *attributesArray = [super layoutAttributesForElementsInRect:rect];
     [attributesArray enumerateObjectsUsingBlock:^(YLCollectionTransitionAnimationAttributes * _Nonnull attribute, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        /**
-         The position for each cell is defined as the ratio of the distance between
-         the center of the cell and the center of the collectionView and the collectionView width/height
-         depending on the scroll direction. It can be negative if the cell is, for instance,
-         on the left of the screen if you're scrolling horizontally.
-         */
-        
         CGFloat distance = 0.0;
-        CGFloat itemOffset = 0.0;
+        CGFloat itemOffset = 0.0;//偏移量
         if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
             distance = CGRectGetHeight(self.collectionView.frame);
             itemOffset = attribute.center.y - self.collectionView.contentOffset.y;

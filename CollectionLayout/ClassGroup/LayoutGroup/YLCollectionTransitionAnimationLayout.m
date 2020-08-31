@@ -208,7 +208,7 @@
 
 
 
-/// 揭开 动画
+/// 小说阅读器：覆盖翻页
 @interface YLCollectionOpenAnimation : YLCollectionTransitionAnimationOperator
 @end
 @implementation YLCollectionOpenAnimation

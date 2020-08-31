@@ -49,6 +49,22 @@
 @end
 
 
+/// None 效果
+@interface YLCollectionNoneAnimation : YLCollectionTransitionAnimationOperator
+@end
+@implementation YLCollectionNoneAnimation
+
+- (void)transitionAnimationWithCollectionView:(UICollectionView *)collectionView attributes:(YLCollectionTransitionAnimationAttributes *)attributes{
+    attributes.frame = CGRectMake(collectionView.contentOffset.x, collectionView.contentOffset.y, CGRectGetWidth(attributes.frame), CGRectGetHeight(attributes.frame));
+    if (attributes.middleOffset < 0) {
+        attributes.zIndex = 1000 + attributes.middleOffset;
+    }else{
+        attributes.zIndex = 2000 - attributes.middleOffset;
+    }
+}
+
+@end
+
 
 /// Cube 动画
 @interface YLCollectionCubeAnimation : YLCollectionTransitionAnimationOperator
@@ -192,6 +208,36 @@
 
 
 
+/// 揭开 动画
+@interface YLCollectionOpenAnimation : YLCollectionTransitionAnimationOperator
+@end
+@implementation YLCollectionOpenAnimation
+
+- (void)transitionAnimationWithCollectionView:(UICollectionView *)collectionView attributes:(YLCollectionTransitionAnimationAttributes *)attributes{
+    CGFloat position = attributes.middleOffset;
+    CGPoint contentOffset = collectionView.contentOffset;
+    if (attributes.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+        if (position > 0) {
+            attributes.frame = CGRectMake(contentOffset.x, attributes.frame.origin.y, CGRectGetWidth(attributes.frame), CGRectGetHeight(attributes.frame));
+        }
+    } else {
+        if (position > 0) {
+            attributes.frame = CGRectMake(attributes.frame.origin.x, contentOffset.y, CGRectGetWidth(attributes.frame), CGRectGetHeight(attributes.frame));
+        }
+    }
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:attributes.indexPath];
+    cell.clipsToBounds = NO;
+    cell.layer.shadowColor = [UIColor blackColor].CGColor; // 阴影颜色
+    cell.layer.shadowOffset = CGSizeMake(0, 0); // 偏移距离
+    cell.layer.shadowOpacity = 0.5; // 不透明度
+    cell.layer.shadowRadius = 10.0; // 半径
+    
+    attributes.zIndex = 10000 - attributes.indexPath.row;
+}
+
+@end
+
 
 /// 视觉差：移动 cell 的速度慢于单元格本身来实现视差效果
 @interface YLCollectionParallaxAnimation : YLCollectionTransitionAnimationOperator
@@ -202,7 +248,7 @@
 @implementation YLCollectionParallaxAnimation
 
 - (instancetype)init{
-    return [self initWithSpeed:0.5];
+    return [self initWithSpeed:0.2];
 }
 
 - (instancetype)initWithSpeed:(CGFloat)speed{
@@ -379,7 +425,10 @@
         self.sectionInset = UIEdgeInsetsZero;
         self.minimumLineSpacing = 0.0;
         self.minimumInteritemSpacing = 0.0;
-        self.transitionType = YLCollectionTransitionCover;
+        
+        ///默认
+        _transitionType = YLCollectionTransitionNone;
+        _animationOperator = [[YLCollectionNoneAnimation alloc] init];
     }
     return self;
 }
@@ -389,6 +438,9 @@
         _transitionType = transitionType;
         
         switch (transitionType) {
+            case YLCollectionTransitionNone:{
+                _animationOperator = [[YLCollectionNoneAnimation alloc] init];
+            }break;
             case YLCollectionTransitionCube:{
                 _animationOperator = [[YLCollectionCubeAnimation alloc] init];
             }break;
@@ -397,6 +449,12 @@
             }break;
             case YLCollectionTransitionCover:{
                 _animationOperator = [[YLCollectionCoverAnimation alloc] init];
+            }break;
+            case YLCollectionTransitionOpen:{
+                _animationOperator = [[YLCollectionOpenAnimation alloc] init];
+            }break;
+            case YLCollectionTransitionPan:{
+                _animationOperator = [[YLCollectionParallaxAnimation alloc] initWithSpeed:0];
             }break;
             case YLCollectionTransitionParallax:{
                 _animationOperator = [[YLCollectionParallaxAnimation alloc] init];
@@ -429,25 +487,29 @@
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     NSArray<YLCollectionTransitionAnimationAttributes *> *attributesArray = [super layoutAttributesForElementsInRect:rect];
+    
+    CGFloat distance = self.scrollDirection == UICollectionViewScrollDirectionVertical ? CGRectGetHeight(self.collectionView.frame) : CGRectGetWidth(self.collectionView.frame);
+
+    printf("\n\n");
     [attributesArray enumerateObjectsUsingBlock:^(YLCollectionTransitionAnimationAttributes * _Nonnull attribute, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        CGFloat distance = 0.0;
         CGFloat itemOffset = 0.0;//偏移量
         if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-            distance = CGRectGetHeight(self.collectionView.frame);
             itemOffset = attribute.center.y - self.collectionView.contentOffset.y;
             attribute.startOffset = (attribute.frame.origin.y - self.collectionView.contentOffset.y) / CGRectGetHeight(attribute.frame);
             attribute.endOffset = (attribute.frame.origin.y - self.collectionView.contentOffset.y - CGRectGetHeight(self.collectionView.frame)) / CGRectGetHeight(attribute.frame);
         }else{
-            distance = CGRectGetWidth(self.collectionView.frame);
             itemOffset = attribute.center.x - self.collectionView.contentOffset.x;
+            //startOffset = cell.indexPath.row - 偏移的单元格数量（左减右加，上减下加）
             attribute.startOffset = (attribute.frame.origin.x - self.collectionView.contentOffset.x) / CGRectGetWidth(attribute.frame);
-            attribute.endOffset = (attribute.frame.origin.x - self.collectionView.contentOffset.x - CGRectGetWidth(self.collectionView.frame)) /CGRectGetWidth(attribute.frame);
+            attribute.endOffset = (attribute.frame.origin.x - self.collectionView.contentOffset.x - CGRectGetWidth(self.collectionView.frame)) / CGRectGetWidth(attribute.frame);
         }
         
         attribute.scrollDirection = self.scrollDirection;
         attribute.middleOffset = itemOffset / distance - 0.5;
         
+//        printf("itemOffset : %f ， startOffset : %f ， endOffset : %f ，middleOffset : %f ， row : %ld \n",itemOffset,attribute.startOffset,attribute.endOffset,attribute.middleOffset,(long)attribute.indexPath.row);
+        
+
         if (attribute.contentView == nil){
             attribute.contentView = [self.collectionView cellForItemAtIndexPath:attribute.indexPath].contentView;
         }

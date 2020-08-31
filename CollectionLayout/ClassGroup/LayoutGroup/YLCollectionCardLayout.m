@@ -83,13 +83,12 @@
                  minDelta = obj.center.y - centerY;
              }
         }];
-        
         CGFloat offsetY =  proposedContentOffset.y + minDelta;
         return CGPointMake(proposedContentOffset.x, offsetY);
     }else{
         CGRect rect = CGRectMake(proposedContentOffset.x, 0, width, height);
         NSArray<UICollectionViewLayoutAttributes *> *attributes = [super layoutAttributesForElementsInRect:rect];
-
+        
         // 计算collectionView最中心点的x值
         CGFloat centerX = proposedContentOffset.x + width * 0.5;
         //需要移动的最小距离

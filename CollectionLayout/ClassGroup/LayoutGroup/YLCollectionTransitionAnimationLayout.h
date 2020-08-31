@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///记录 UICollectionView 滚动方向
 @property (nonatomic ,assign) UICollectionViewScrollDirection scrollDirection;
 
+///cell.indexPath.row - 偏移的单元格数量（左减右加，上减下加）
 @property (nonatomic ,assign) CGFloat startOffset;
 
 @property (nonatomic ,assign) CGFloat middleOffset;
@@ -32,9 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///转场动画类型
 typedef NS_ENUM(NSUInteger,YLCollectionTransitionType) {
-    YLCollectionTransitionNone = 0,
+    YLCollectionTransitionNone = 0,//小数阅读器：无效果
     YLCollectionTransitionCube,
     YLCollectionTransitionCover,//覆盖
+    YLCollectionTransitionOpen,//小数阅读器：覆盖
+    YLCollectionTransitionPan, //小数阅读器：平移
     YLCollectionTransitionCard,
     YLCollectionTransitionParallax,
     YLCollectionTransitionCrossFade,

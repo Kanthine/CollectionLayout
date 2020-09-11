@@ -3,7 +3,7 @@ UICollectionView的特效
 
 ### 应用
 
-左\右对齐|瀑布流|卡片覆盖|卡片轮转效果
+左\右对齐|瀑布流|小说阅读器覆盖翻页|卡片轮转效果
 :-: |:-: |:-: |:-:
 ![左\右对齐.gif](https://upload-images.jianshu.io/upload_images/7112462-602eb8480af4b6b8.gif?imageMogr2/auto-orient/strip)|![瀑布流.png](https://upload-images.jianshu.io/upload_images/7112462-3e3ce6bbcb76a21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)|![小说阅读器：覆盖翻页.gif](https://upload-images.jianshu.io/upload_images/7112462-413b88fda0fc5974.gif?imageMogr2/auto-orient/strip)|![卡片轮转效果.gif](https://upload-images.jianshu.io/upload_images/7112462-976ecfc01b30983a.gif?imageMogr2/auto-orient/strip)
 

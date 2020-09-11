@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1ABEC84A250B5BF7008D0DAC /* YLCollectionCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC826250B5BF7008D0DAC /* YLCollectionCardLayout.m */; };
+		1ABEC84B250B5BF7008D0DAC /* YLCollectionPinterestLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC827250B5BF7008D0DAC /* YLCollectionPinterestLayout.m */; };
+		1ABEC84C250B5BF7008D0DAC /* YLCollectionReelLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC828250B5BF7008D0DAC /* YLCollectionReelLayout.m */; };
+		1ABEC84D250B5BF7008D0DAC /* YLCollectionAlignmentLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC829250B5BF7008D0DAC /* YLCollectionAlignmentLayout.m */; };
+		1ABEC84E250B5BF7008D0DAC /* YLCollectionTransitionAnimationLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC82B250B5BF7008D0DAC /* YLCollectionTransitionAnimationLayout.m */; };
+		1ABEC84F250B5BF7008D0DAC /* PinterestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC830250B5BF7008D0DAC /* PinterestViewController.m */; };
+		1ABEC850250B5BF7008D0DAC /* TransitionAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC832250B5BF7008D0DAC /* TransitionAnimationViewController.m */; };
+		1ABEC851250B5BF7008D0DAC /* CardReelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC834250B5BF7008D0DAC /* CardReelViewController.m */; };
+		1ABEC852250B5BF7008D0DAC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC835250B5BF7008D0DAC /* ViewController.m */; };
+		1ABEC853250B5BF7008D0DAC /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC836250B5BF7008D0DAC /* CardViewController.m */; };
+		1ABEC854250B5BF7008D0DAC /* AlignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC83A250B5BF7008D0DAC /* AlignmentViewController.m */; };
+		1ABEC855250B5BF7008D0DAC /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC83D250B5BF7008D0DAC /* DataModel.m */; };
+		1ABEC856250B5BF7008D0DAC /* CollectionSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC83F250B5BF7008D0DAC /* CollectionSectionHeaderView.m */; };
+		1ABEC857250B5BF7008D0DAC /* CollectionAlignmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC840250B5BF7008D0DAC /* CollectionAlignmentCell.m */; };
+		1ABEC858250B5BF7008D0DAC /* CollectionTransitionAnimationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC842250B5BF7008D0DAC /* CollectionTransitionAnimationCell.m */; };
+		1ABEC859250B5BF7008D0DAC /* CollectionCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC846250B5BF7008D0DAC /* CollectionCardCell.m */; };
+		1ABEC85A250B5BF7008D0DAC /* PinterestCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEC848250B5BF7008D0DAC /* PinterestCollectionCell.m */; };
+		1AE8840124E233FD00B89C29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8840024E233FD00B89C29 /* AppDelegate.m */; };
+		1AE8840C24E233FE00B89C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE8840B24E233FE00B89C29 /* Assets.xcassets */; };
+		1AE8840F24E233FE00B89C29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AE8840D24E233FE00B89C29 /* LaunchScreen.storyboard */; };
+		1AE8841224E233FE00B89C29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8841124E233FE00B89C29 /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1ABEC825250B5BF7008D0DAC /* YLCollectionTransitionAnimationLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLCollectionTransitionAnimationLayout.h; sourceTree = "<group>"; };
+		1ABEC826250B5BF7008D0DAC /* YLCollectionCardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLCollectionCardLayout.m; sourceTree = "<group>"; };
+		1ABEC827250B5BF7008D0DAC /* YLCollectionPinterestLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLCollectionPinterestLayout.m; sourceTree = "<group>"; };
+		1ABEC828250B5BF7008D0DAC /* YLCollectionReelLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLCollectionReelLayout.m; sourceTree = "<group>"; };
+		1ABEC829250B5BF7008D0DAC /* YLCollectionAlignmentLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLCollectionAlignmentLayout.m; sourceTree = "<group>"; };
+		1ABEC82A250B5BF7008D0DAC /* YLCollectionCardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLCollectionCardLayout.h; sourceTree = "<group>"; };
+		1ABEC82B250B5BF7008D0DAC /* YLCollectionTransitionAnimationLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLCollectionTransitionAnimationLayout.m; sourceTree = "<group>"; };
+		1ABEC82C250B5BF7008D0DAC /* YLCollectionPinterestLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLCollectionPinterestLayout.h; sourceTree = "<group>"; };
+		1ABEC82D250B5BF7008D0DAC /* YLCollectionAlignmentLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLCollectionAlignmentLayout.h; sourceTree = "<group>"; };
+		1ABEC82E250B5BF7008D0DAC /* YLCollectionReelLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLCollectionReelLayout.h; sourceTree = "<group>"; };
+		1ABEC830250B5BF7008D0DAC /* PinterestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestViewController.m; sourceTree = "<group>"; };
+		1ABEC831250B5BF7008D0DAC /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
+		1ABEC832250B5BF7008D0DAC /* TransitionAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionAnimationViewController.m; sourceTree = "<group>"; };
+		1ABEC833250B5BF7008D0DAC /* AlignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentViewController.h; sourceTree = "<group>"; };
+		1ABEC834250B5BF7008D0DAC /* CardReelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardReelViewController.m; sourceTree = "<group>"; };
+		1ABEC835250B5BF7008D0DAC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1ABEC836250B5BF7008D0DAC /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
+		1ABEC837250B5BF7008D0DAC /* PinterestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestViewController.h; sourceTree = "<group>"; };
+		1ABEC838250B5BF7008D0DAC /* CardReelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardReelViewController.h; sourceTree = "<group>"; };
+		1ABEC839250B5BF7008D0DAC /* TransitionAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionAnimationViewController.h; sourceTree = "<group>"; };
+		1ABEC83A250B5BF7008D0DAC /* AlignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentViewController.m; sourceTree = "<group>"; };
+		1ABEC83C250B5BF7008D0DAC /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		1ABEC83D250B5BF7008D0DAC /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		1ABEC83F250B5BF7008D0DAC /* CollectionSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionSectionHeaderView.m; sourceTree = "<group>"; };
+		1ABEC840250B5BF7008D0DAC /* CollectionAlignmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionAlignmentCell.m; sourceTree = "<group>"; };
+		1ABEC841250B5BF7008D0DAC /* PinterestCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestCollectionCell.h; sourceTree = "<group>"; };
+		1ABEC842250B5BF7008D0DAC /* CollectionTransitionAnimationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionTransitionAnimationCell.m; sourceTree = "<group>"; };
+		1ABEC843250B5BF7008D0DAC /* CollectionCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCardCell.h; sourceTree = "<group>"; };
+		1ABEC844250B5BF7008D0DAC /* CollectionSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionSectionHeaderView.h; sourceTree = "<group>"; };
+		1ABEC845250B5BF7008D0DAC /* CollectionAlignmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionAlignmentCell.h; sourceTree = "<group>"; };
+		1ABEC846250B5BF7008D0DAC /* CollectionCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCardCell.m; sourceTree = "<group>"; };
+		1ABEC847250B5BF7008D0DAC /* CollectionTransitionAnimationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionTransitionAnimationCell.h; sourceTree = "<group>"; };
+		1ABEC848250B5BF7008D0DAC /* PinterestCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestCollectionCell.m; sourceTree = "<group>"; };
+		1ABEC849250B5BF7008D0DAC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1AE883FC24E233FC00B89C29 /* CollectionLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AE883FF24E233FD00B89C29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1AE8840024E233FD00B89C29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1AE8840B24E233FE00B89C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AE8840E24E233FE00B89C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1AE8841024E233FE00B89C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AE8841124E233FE00B89C29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AE883F924E233FC00B89C29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1ABEC824250B5BF7008D0DAC /* LayoutGroup */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEC82D250B5BF7008D0DAC /* YLCollectionAlignmentLayout.h */,
+				1ABEC829250B5BF7008D0DAC /* YLCollectionAlignmentLayout.m */,
+				1ABEC82A250B5BF7008D0DAC /* YLCollectionCardLayout.h */,
+				1ABEC826250B5BF7008D0DAC /* YLCollectionCardLayout.m */,
+				1ABEC82C250B5BF7008D0DAC /* YLCollectionPinterestLayout.h */,
+				1ABEC827250B5BF7008D0DAC /* YLCollectionPinterestLayout.m */,
+				1ABEC82E250B5BF7008D0DAC /* YLCollectionReelLayout.h */,
+				1ABEC828250B5BF7008D0DAC /* YLCollectionReelLayout.m */,
+				1ABEC825250B5BF7008D0DAC /* YLCollectionTransitionAnimationLayout.h */,
+				1ABEC82B250B5BF7008D0DAC /* YLCollectionTransitionAnimationLayout.m */,
+			);
+			path = LayoutGroup;
+			sourceTree = "<group>";
+		};
+		1ABEC82F250B5BF7008D0DAC /* ControllerGroup */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEC83E250B5BF7008D0DAC /* ViewGroup */,
+				1ABEC83B250B5BF7008D0DAC /* ModelGroup */,
+				1ABEC833250B5BF7008D0DAC /* AlignmentViewController.h */,
+				1ABEC83A250B5BF7008D0DAC /* AlignmentViewController.m */,
+				1ABEC838250B5BF7008D0DAC /* CardReelViewController.h */,
+				1ABEC834250B5BF7008D0DAC /* CardReelViewController.m */,
+				1ABEC831250B5BF7008D0DAC /* CardViewController.h */,
+				1ABEC836250B5BF7008D0DAC /* CardViewController.m */,
+				1ABEC837250B5BF7008D0DAC /* PinterestViewController.h */,
+				1ABEC830250B5BF7008D0DAC /* PinterestViewController.m */,
+				1ABEC839250B5BF7008D0DAC /* TransitionAnimationViewController.h */,
+				1ABEC832250B5BF7008D0DAC /* TransitionAnimationViewController.m */,
+				1ABEC849250B5BF7008D0DAC /* ViewController.h */,
+				1ABEC835250B5BF7008D0DAC /* ViewController.m */,
+			);
+			path = ControllerGroup;
+			sourceTree = "<group>";
+		};
+		1ABEC83B250B5BF7008D0DAC /* ModelGroup */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEC83C250B5BF7008D0DAC /* DataModel.h */,
+				1ABEC83D250B5BF7008D0DAC /* DataModel.m */,
+			);
+			path = ModelGroup;
+			sourceTree = "<group>";
+		};
+		1ABEC83E250B5BF7008D0DAC /* ViewGroup */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEC845250B5BF7008D0DAC /* CollectionAlignmentCell.h */,
+				1ABEC840250B5BF7008D0DAC /* CollectionAlignmentCell.m */,
+				1ABEC843250B5BF7008D0DAC /* CollectionCardCell.h */,
+				1ABEC846250B5BF7008D0DAC /* CollectionCardCell.m */,
+				1ABEC844250B5BF7008D0DAC /* CollectionSectionHeaderView.h */,
+				1ABEC83F250B5BF7008D0DAC /* CollectionSectionHeaderView.m */,
+				1ABEC847250B5BF7008D0DAC /* CollectionTransitionAnimationCell.h */,
+				1ABEC842250B5BF7008D0DAC /* CollectionTransitionAnimationCell.m */,
+				1ABEC841250B5BF7008D0DAC /* PinterestCollectionCell.h */,
+				1ABEC848250B5BF7008D0DAC /* PinterestCollectionCell.m */,
+			);
+			path = ViewGroup;
+			sourceTree = "<group>";
+		};
+		1AE883F324E233FC00B89C29 = {
+			isa = PBXGroup;
+			children = (
+				1AE883FE24E233FD00B89C29 /* CollectionLayout */,
+				1AE883FD24E233FC00B89C29 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1AE883FD24E233FC00B89C29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AE883FC24E233FC00B89C29 /* CollectionLayout.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AE883FE24E233FD00B89C29 /* CollectionLayout */ = {
+			isa = PBXGroup;
+			children = (
+				1AE883FF24E233FD00B89C29 /* AppDelegate.h */,
+				1AE8840024E233FD00B89C29 /* AppDelegate.m */,
+				1ABEC82F250B5BF7008D0DAC /* ControllerGroup */,
+				1ABEC824250B5BF7008D0DAC /* LayoutGroup */,
+				1AE8840B24E233FE00B89C29 /* Assets.xcassets */,
+				1AE8840D24E233FE00B89C29 /* LaunchScreen.storyboard */,
+				1AE8841024E233FE00B89C29 /* Info.plist */,
+				1AE8841124E233FE00B89C29 /* main.m */,
+			);
+			path = CollectionLayout;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AE883FB24E233FC00B89C29 /* CollectionLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AE8841524E233FE00B89C29 /* Build configuration list for PBXNativeTarget "CollectionLayout" */;
+			buildPhases = (
+				1AE883F824E233FC00B89C29 /* Sources */,
+				1AE883F924E233FC00B89C29 /* Frameworks */,
+				1AE883FA24E233FC00B89C29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CollectionLayout;
+			productName = CollectionLayout;
+			productReference = 1AE883FC24E233FC00B89C29 /* CollectionLayout.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AE883F424E233FC00B89C29 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "苏沫离";
+				TargetAttributes = {
+					1AE883FB24E233FC00B89C29 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = 1AE883F724E233FC00B89C29 /* Build configuration list for PBXProject "CollectionLayout" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1AE883F324E233FC00B89C29;
+			productRefGroup = 1AE883FD24E233FC00B89C29 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AE883FB24E233FC00B89C29 /* CollectionLayout */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AE883FA24E233FC00B89C29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AE8840F24E233FE00B89C29 /* LaunchScreen.storyboard in Resources */,
+				1AE8840C24E233FE00B89C29 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AE883F824E233FC00B89C29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ABEC84D250B5BF7008D0DAC /* YLCollectionAlignmentLayout.m in Sources */,
+				1ABEC84F250B5BF7008D0DAC /* PinterestViewController.m in Sources */,
+				1ABEC856250B5BF7008D0DAC /* CollectionSectionHeaderView.m in Sources */,
+				1ABEC850250B5BF7008D0DAC /* TransitionAnimationViewController.m in Sources */,
+				1AE8840124E233FD00B89C29 /* AppDelegate.m in Sources */,
+				1ABEC84C250B5BF7008D0DAC /* YLCollectionReelLayout.m in Sources */,
+				1ABEC852250B5BF7008D0DAC /* ViewController.m in Sources */,
+				1ABEC859250B5BF7008D0DAC /* CollectionCardCell.m in Sources */,
+				1ABEC854250B5BF7008D0DAC /* AlignmentViewController.m in Sources */,
+				1ABEC84B250B5BF7008D0DAC /* YLCollectionPinterestLayout.m in Sources */,
+				1ABEC85A250B5BF7008D0DAC /* PinterestCollectionCell.m in Sources */,
+				1ABEC851250B5BF7008D0DAC /* CardReelViewController.m in Sources */,
+				1ABEC853250B5BF7008D0DAC /* CardViewController.m in Sources */,
+				1ABEC84A250B5BF7008D0DAC /* YLCollectionCardLayout.m in Sources */,
+				1ABEC855250B5BF7008D0DAC /* DataModel.m in Sources */,
+				1ABEC84E250B5BF7008D0DAC /* YLCollectionTransitionAnimationLayout.m in Sources */,
+				1ABEC858250B5BF7008D0DAC /* CollectionTransitionAnimationCell.m in Sources */,
+				1AE8841224E233FE00B89C29 /* main.m in Sources */,
+				1ABEC857250B5BF7008D0DAC /* CollectionAlignmentCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1AE8840D24E233FE00B89C29 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AE8840E24E233FE00B89C29 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1AE8841324E233FE00B89C29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1AE8841424E233FE00B89C29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AE8841624E233FE00B89C29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2NC8A2MPU;
+				INFOPLIST_FILE = CollectionLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.CollectionLayout;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1AE8841724E233FE00B89C29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2NC8A2MPU;
+				INFOPLIST_FILE = CollectionLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.CollectionLayout;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AE883F724E233FC00B89C29 /* Build configuration list for PBXProject "CollectionLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AE8841324E233FE00B89C29 /* Debug */,
+				1AE8841424E233FE00B89C29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AE8841524E233FE00B89C29 /* Build configuration list for PBXNativeTarget "CollectionLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AE8841624E233FE00B89C29 /* Debug */,
+				1AE8841724E233FE00B89C29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1AE883F424E233FC00B89C29 /* Project object */;
+}

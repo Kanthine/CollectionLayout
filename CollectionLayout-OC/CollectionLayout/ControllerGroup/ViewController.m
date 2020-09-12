@@ -9,20 +9,11 @@
 #import "ViewController.h"
 #import "CollectionAlignmentCell.h"
 
-@interface UIViewController (Data)
-- (void)reloadData:(NSMutableArray<DataModel *> *)dataArray;
-@end
-
-@implementation UIViewController (Data)
-- (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{}
-@end
-
 
 @interface ViewController ()
 <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic ,strong) UICollectionView *collectionView;
 @property (nonatomic ,strong) NSMutableArray<NSDictionary<NSString * ,NSString *> *> *itemArray;
-@property (nonatomic ,strong) NSMutableArray<DataModel *> *dataArray;
 @end
 
 @implementation ViewController
@@ -34,9 +25,8 @@
     self.navigationItem.title = @"Flow Layout";
     
     [self.view addSubview:self.collectionView];
-    [DataModel creatDemoData:^(NSMutableArray<DataModel *> * _Nonnull array) {
-        self.dataArray = array;
-    }];
+    
+    [DataModel shareDemoData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -64,7 +54,6 @@
     UIViewController *vc = [[NSClassFromString(self.itemArray[indexPath.row].allValues.firstObject) alloc] init];
     vc.navigationItem.title = self.itemArray[indexPath.row].allKeys.firstObject;
     [self.navigationController pushViewController:vc animated:YES];
-    [vc reloadData:self.dataArray];
 }
 
 #pragma mark - setter and getter

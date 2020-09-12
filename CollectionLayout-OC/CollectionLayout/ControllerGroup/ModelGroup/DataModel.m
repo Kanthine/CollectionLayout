@@ -27,6 +27,17 @@
 }
 
 
++ (NSMutableArray<DataModel *> *)shareDemoData{
+    static NSMutableArray *shareArray;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [DataModel creatDemoData:^(NSMutableArray<DataModel *> * _Nonnull array) {
+            shareArray = array;
+        }];
+    });
+    return shareArray;
+}
+
 + (void)creatDemoData:(void(^)(NSMutableArray<DataModel *> *array))dataBlock{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         

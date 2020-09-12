@@ -17,7 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *detaile;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) NSInteger index;
-+ (void)creatDemoData:(void(^)(NSMutableArray<DataModel *> *array))dataBlock;
+
+
++ (NSMutableArray<DataModel *> *)shareDemoData;
+
 @end
 
 ///左对齐/右对齐

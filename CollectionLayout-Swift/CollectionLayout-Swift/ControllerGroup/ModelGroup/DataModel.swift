@@ -13,6 +13,24 @@ class DataModel: NSObject {
     var detaile : NSString!
     var image : UIImage!
     var index : NSInteger!
+    
+
+    /// 延迟加载并返回FilesContentBuilder的单例实例
+    struct Singleton{
+        static var onceToken : Int = 0
+        static var shareArray:[DataModel] = [DataModel]()
+    }
+    private static var __once: () = {
+        creatDemoData { (array : [DataModel]) in
+            Singleton.shareArray = array
+        }
+    }()
+    //单例
+    class func shareDemoData()->[DataModel]{
+        _ = DataModel.__once
+        return Singleton.shareArray
+    }
+    
 }
 
 ///分类里面不能存储属性，只能通过关联属性来达到目的
@@ -20,29 +38,27 @@ extension DataModel{
     
     
     private struct AssociatedKey {
-        ///左对齐/右对齐
-        static var alignmentTitleSize: CGSize = CGSize.zero
-        
+        static var alignmentTitleSizeKey = "alignmentTitleSizeKey"
         ///瀑布流
         static var detaileHeight: CGFloat = 0.0
         static var cellHeight: CGFloat = 0.0
         static var imageSize: CGSize = CGSize.zero
     }
+    ///左对齐/右对齐
     public var alignmentTitleSize: CGSize {
         get {
-            var size = objc_getAssociatedObject(self, &AssociatedKey.alignmentTitleSize) as! CGSize
+            var size = objc_getAssociatedObject(self, &AssociatedKey.alignmentTitleSizeKey) as! CGSize
             if size.width < 10 {
                 let textSize = self.title.boundingRect(with: CGSize(width: UIScreen.main.bounds.width, height: 200), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)], context: nil).size
                 size = CGSize(width: 18 + textSize.width + 18, height: 9 + textSize.height + 9)
-                objc_setAssociatedObject(self, &AssociatedKey.alignmentTitleSize, size, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+                objc_setAssociatedObject(self, &AssociatedKey.alignmentTitleSizeKey, size, .OBJC_ASSOCIATION_COPY_NONATOMIC)
             }
             return size;
         }
         set {
-            objc_setAssociatedObject(self, &AssociatedKey.alignmentTitleSize, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKey.alignmentTitleSizeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
     }
-    
     
     public var imageSize: CGSize {
         get {
@@ -117,6 +133,7 @@ func creatDemoData(dataBlock: @escaping (_ array: [DataModel]) -> Void ) {
             model.title = itemArray[i - 1] as NSString
             model.detaile = introsArray()[i - 1] as NSString
             model.image = UIImage(named: "\(i)")
+            model.alignmentTitleSize = CGSize.zero
             resultArray.add(model)
         }
         DispatchQueue.main.async {

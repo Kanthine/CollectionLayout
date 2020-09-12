@@ -10,9 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 ///左对齐、右对齐
-@class DataModel;
 @interface AlignmentViewController : UIViewController
-@property (nonatomic ,strong) NSMutableArray<DataModel *> *dataArray;
+
 @end
 
 

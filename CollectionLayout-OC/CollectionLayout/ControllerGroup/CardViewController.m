@@ -16,7 +16,6 @@
 <UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic ,strong) NSMutableArray<NSNumber *> *indexArray;
-@property (nonatomic ,strong) NSMutableArray<DataModel *> *dataArray;
 @property (nonatomic ,strong) UICollectionView *collectionView;
 
 @end
@@ -28,17 +27,13 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [[UIColor colorWithPatternImage:[UIImage imageNamed:@"CardBack"]] colorWithAlphaComponent:0.9];
     [self.view addSubview:self.collectionView];
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
+    [self reloadData];
 }
 
 #pragma mark - public method
 
-- (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{
-    self.dataArray = dataArray;
-    NSInteger count = self.dataArray.count;
+- (void)reloadData{
+    NSInteger count = DataModel.shareDemoData.count;
     [self.indexArray removeAllObjects];
     for (int i = 0; i < 100; i++) {
         for (int j = 0; j < count; j++) {
@@ -46,7 +41,7 @@
         }
     }
     // 定位到 第50组(中间那组)
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:100 / 2 * count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:100 / 2 * count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -54,10 +49,10 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     CGPoint pointInView = [self.view convertPoint:self.collectionView.center toView:self.collectionView];
     NSIndexPath *indexPathNow = [self.collectionView indexPathForItemAtPoint:pointInView];
-    NSInteger index = indexPathNow.row % self.dataArray.count;
+    NSInteger index = indexPathNow.row % DataModel.shareDemoData.count;
     
     // 动画停止, 重新定位到 第50组(中间那组) 模型
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:100 / 2 * self.dataArray.count + index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:100 / 2 * DataModel.shareDemoData.count + index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -67,7 +62,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CollectionCardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifer forIndexPath:indexPath];
     NSInteger index = self.indexArray[indexPath.row].integerValue;
-    DataModel *model = self.dataArray[index];
+    DataModel *model = DataModel.shareDemoData[index];
     model.index = index;
     cell.model = model;
     return cell;

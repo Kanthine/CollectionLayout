@@ -16,7 +16,6 @@
 @interface CardReelViewController ()
 <UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (nonatomic ,strong) NSMutableArray<DataModel *> *dataArray;
 @property (nonatomic ,strong) UICollectionView *collectionView;
 
 @end
@@ -34,22 +33,15 @@
     [super viewWillLayoutSubviews];
 }
 
-#pragma mark - public method
-
-- (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{
-    self.dataArray = dataArray;
-    [_collectionView reloadData];
-}
-
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return DataModel.shareDemoData.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CollectionCardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifer forIndexPath:indexPath];
-    DataModel *model = self.dataArray[indexPath.row];
+    DataModel *model = DataModel.shareDemoData[indexPath.row];
     model.index = indexPath.row;
     cell.model = model;
     return cell;

@@ -148,7 +148,6 @@
 @interface TransitionAnimationViewController ()
 <UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (nonatomic ,strong) NSMutableArray<DataModel *> *dataArray;
 @property (nonatomic ,strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIButton *rightButton;
 
@@ -177,23 +176,15 @@
     [self.collectionView reloadData];
 }
 
-
-#pragma mark - public method
-
-- (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{
-    self.dataArray = dataArray;
-    [_collectionView reloadData];
-}
-
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return DataModel.shareDemoData.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CollectionTransitionAnimationCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifer forIndexPath:indexPath];
-    DataModel *model = self.dataArray[indexPath.row];
+    DataModel *model = DataModel.shareDemoData[indexPath.row];
     model.index = indexPath.row;
     cell.model = model;
     return cell;
@@ -208,7 +199,7 @@
         button.frame = CGRectMake(0, 0, 80, 40);
         button.titleLabel.font = [UIFont systemFontOfSize:16];
         [button setTitleColor:UIColor.redColor forState:UIControlStateNormal];
-        [button setTitle:@"None" forState:UIControlStateNormal];
+        [button setTitle:@"Cube" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(rightBarButtonItemClick:) forControlEvents:UIControlEventTouchUpInside];
         _rightButton = button;
     }
@@ -222,6 +213,7 @@
         YLCollectionTransitionAnimationLayout *layout = [[YLCollectionTransitionAnimationLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+        layout.transitionType = YLCollectionTransitionCube;
         
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, itemWidth, itemHeight) collectionViewLayout:layout];
         collectionView.dataSource = self;

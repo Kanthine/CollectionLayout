@@ -16,7 +16,6 @@
 @interface PinterestViewController ()
 <UICollectionViewDelegate,UICollectionViewDataSource,
 YLCollectionPinterestLayoutDelegate>
-@property (nonatomic ,strong) NSMutableArray<DataModel *> *dataArray;
 @property (nonatomic ,strong) UICollectionView *collectionView;
 
 @end
@@ -44,7 +43,7 @@ YLCollectionPinterestLayoutDelegate>
 }
 
 - (CGFloat)YLLayout:(YLCollectionPinterestLayout *)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath itemWidth:(CGFloat)itemWidth{
-    DataModel *model = self.dataArray[indexPath.row];
+    DataModel *model = DataModel.shareDemoData[indexPath.row];
     return [model cellHeightByWidth:itemWidth];
 }
 
@@ -55,7 +54,7 @@ YLCollectionPinterestLayoutDelegate>
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return DataModel.shareDemoData.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -69,15 +68,8 @@ YLCollectionPinterestLayoutDelegate>
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PinterestCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifer forIndexPath:indexPath];
-    cell.model = self.dataArray[indexPath.row];
+    cell.model = DataModel.shareDemoData[indexPath.row];
     return cell;
-}
-
-#pragma mark - public method
-
-- (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{
-    self.dataArray = dataArray;
-    [_collectionView reloadData];
 }
 
 #pragma mark - getter and setter

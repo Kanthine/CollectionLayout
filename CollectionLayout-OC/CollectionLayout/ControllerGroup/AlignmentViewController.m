@@ -57,7 +57,7 @@
 }
 
 - (CGSize)collectionViewSizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return self.dataArray[indexPath.row].alignmentTitleSize;
+    return DataModel.shareDemoData[indexPath.row].alignmentTitleSize;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -67,7 +67,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return DataModel.shareDemoData.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -81,15 +81,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CollectionAlignmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifer forIndexPath:indexPath];
-    cell.itemLable.text = self.dataArray[indexPath.row].title;
+    cell.itemLable.text = DataModel.shareDemoData[indexPath.row].title;
     return cell;
-}
-
-#pragma mark - public method
-
-- (void)reloadData:(NSMutableArray<DataModel *> *)dataArray{
-    self.dataArray = dataArray;
-    [_collectionView reloadData];
 }
 
 #pragma mark - setter and getter
@@ -104,13 +97,6 @@
         _rightButton = button;
     }
     return _rightButton;
-}
-
-- (NSMutableArray<DataModel *> *)dataArray{
-    if(_dataArray == nil){
-        _dataArray = [NSMutableArray array];
-    }
-    return _dataArray;
 }
 
 - (UICollectionView *)collectionView{

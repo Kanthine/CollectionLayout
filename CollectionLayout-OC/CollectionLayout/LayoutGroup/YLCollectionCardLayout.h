@@ -10,14 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, YLCollectionCardType){
-    YLCollectionCardTypeCoverFlow = 0,
-};
-
-
 ///卡片翻转
 @interface YLCollectionCardLayout : UICollectionViewFlowLayout
-@property (nonatomic ,assign) YLCollectionCardType cardType;
 @property (nonatomic, assign) CGFloat itemOffset;
 @end
 

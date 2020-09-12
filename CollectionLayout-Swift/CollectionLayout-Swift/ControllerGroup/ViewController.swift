@@ -38,6 +38,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         collectionView.backgroundColor = UIColor.white
         collectionView.register(CollectionAlignmentCell.self, forCellWithReuseIdentifier: "CollectionAlignmentCell")
         self.view.addSubview(collectionView)
+        DataModel.shareDemoData()
     }
 
     
@@ -48,9 +49,28 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : CollectionAlignmentCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionAlignmentCell", for: indexPath) as! CollectionAlignmentCell
         let dict : NSDictionary = itemArray.object(at: indexPath.row) as! NSDictionary
-        cell.itemLable.text = dict.allKeys.first as! String
+        cell.itemLable.text = (dict.allKeys.first as! String)
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dict : NSDictionary = itemArray.object(at: indexPath.row) as! NSDictionary
+        let key = dict.allKeys.first as! String
+        
+        if key == "左对齐/右对齐" {
+            let vc : AlignmentViewController = AlignmentViewController()
+            vc.navigationItem.title = key
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if key == "卡片轮转效果" {
+            let vc : CardReelViewController = CardReelViewController()
+            vc.navigationItem.title = key
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if key == "卡片覆盖效果" {
+            let vc : CardViewController = CardViewController()
+            vc.navigationItem.title = key
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+    }
 }
 

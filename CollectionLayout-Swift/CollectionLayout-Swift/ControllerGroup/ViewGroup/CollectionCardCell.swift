@@ -9,26 +9,21 @@
 import UIKit
 
 class CollectionCardCell: UICollectionViewCell {
-    var nameLable: UILabel {
-        get {
-            let label = UILabel()
-            label.backgroundColor = UIColor(patternImage: UIImage(named: "cardItemBack")!)
-            label.textAlignment = .center
-            label.textColor = UIColor.white
-            label.font = UIFont.init(name: "Helvetica-Bold", size: 20)
-            return label
-        }
-    }
-    
-    var imageView: UIImageView {
-        get {
-            let imageV = UIImageView(frame: CGRect(x: 12, y: 20, width: 42, height: 42))
-            imageV.backgroundColor = UIColor(red: 222/255.0, green: 222/255.0, blue: 222/255.0, alpha: 1)
-            imageV.contentMode = .scaleAspectFill
-            imageV.clipsToBounds = true
-            return imageV
-        }
-    }
+    lazy var nameLable: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor(patternImage: UIImage(named: "cardItemBack")!)
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.font = UIFont.init(name: "Helvetica-Bold", size: 20)
+        return label
+    }()
+    lazy var imageView: UIImageView = {
+        let imageV = UIImageView(frame: CGRect(x: 12, y: 20, width: 42, height: 42))
+        imageV.backgroundColor = UIColor(red: 222/255.0, green: 222/255.0, blue: 222/255.0, alpha: 1)
+        imageV.contentMode = .scaleAspectFill
+        imageV.clipsToBounds = true
+        return imageV
+    }()
     
     var model: DataModel! {
         didSet{

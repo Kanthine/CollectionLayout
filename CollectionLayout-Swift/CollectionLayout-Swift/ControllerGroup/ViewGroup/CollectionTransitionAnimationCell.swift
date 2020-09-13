@@ -43,8 +43,8 @@ class CollectionTransitionAnimationCell: UICollectionViewCell {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height)
-        nameLable.frame = CGRect(x: 0, y: imageView.frame.maxX, width: self.contentView.bounds.width, height: 40)
+        imageView.frame = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: contentView.bounds.height - 40)
+        nameLable.frame = CGRect(x: 0, y: imageView.frame.maxY, width: contentView.bounds.width, height: 40)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

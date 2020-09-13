@@ -57,8 +57,7 @@ class CardViewController: UIViewController,UICollectionViewDelegate,
         // 定位到 第50组(中间那组)
         collectionView.scrollToItem(at: NSIndexPath(row: 100 / 2 * count, section: 0) as IndexPath, at: .centeredHorizontally, animated: false)
     }
-
-
+    
     // MARK: - UICollectionViewDelegate
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -73,16 +72,6 @@ class CardViewController: UIViewController,UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return indexArray.count
     }
-
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-       if kind == UICollectionView.elementKindSectionHeader {
-           let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath)
-           return headerView
-       }
-       let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footerView", for: indexPath)
-       return footerView
-    }
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : CollectionCardCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCardCell", for: indexPath) as! CollectionCardCell
         let index = indexArray[indexPath.row].intValue

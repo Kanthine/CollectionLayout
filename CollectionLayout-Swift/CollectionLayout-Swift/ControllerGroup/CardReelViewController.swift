@@ -39,16 +39,6 @@ class CardReelViewController: UIViewController,UICollectionViewDelegate,
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        return DataModel.shareDemoData().count
    }
-   
-   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-       if kind == UICollectionView.elementKindSectionHeader {
-           let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath)
-           return headerView
-       }
-       let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footerView", for: indexPath)
-       return footerView
-   }
-   
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : CollectionCardCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCardCell", for: indexPath) as! CollectionCardCell
         let model = DataModel.shareDemoData()[indexPath.row]

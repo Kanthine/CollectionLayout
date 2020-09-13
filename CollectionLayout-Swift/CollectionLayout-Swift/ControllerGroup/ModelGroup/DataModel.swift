@@ -41,7 +41,7 @@ extension DataModel{
         static var alignmentTitleSizeKey = "alignmentTitleSizeKey"
         ///瀑布流
         static var detaileHeight: CGFloat = 0.0
-        static var cellHeight: CGFloat = 0.0
+        static var cellHeightKey = "cellHeightKey"
         static var imageSize: CGSize = CGSize.zero
     }
     ///左对齐/右对齐
@@ -82,10 +82,10 @@ extension DataModel{
     
     public var cellHeight: CGFloat {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKey.cellHeight) as! CGFloat
+            return objc_getAssociatedObject(self, &AssociatedKey.cellHeightKey) as! CGFloat
         }
         set {
-            objc_setAssociatedObject(self, &AssociatedKey.cellHeight, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKey.cellHeightKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
     }
     
@@ -134,6 +134,7 @@ func creatDemoData(dataBlock: @escaping (_ array: [DataModel]) -> Void ) {
             model.detaile = introsArray()[i - 1] as NSString
             model.image = UIImage(named: "\(i)")
             model.alignmentTitleSize = CGSize.zero
+            model.cellHeight = 0
             resultArray.add(model)
         }
         DispatchQueue.main.async {

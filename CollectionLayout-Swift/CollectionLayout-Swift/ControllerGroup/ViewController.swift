@@ -22,7 +22,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
          itemArray.add(["瀑布流":"PinterestViewController"])
          itemArray.add(["卡片覆盖效果":"CardViewController"])
          itemArray.add(["卡片轮转效果":"CardReelViewController"])
-         itemArray.add(["卡片轮转效果":"TransitionAnimationViewController"])
+         itemArray.add(["过渡动画":"TransitionAnimationViewController"])
         
         
         let flowLayout = UICollectionViewFlowLayout()
@@ -69,7 +69,19 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
             let vc : CardViewController = CardViewController()
             vc.navigationItem.title = key
             self.navigationController?.pushViewController(vc, animated: true)
+        }else if key == "瀑布流" {
+            let vc : PinterestViewController = PinterestViewController()
+            vc.navigationItem.title = key
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if key == "过渡动画" {
+            let vc : TransitionAnimationViewController = TransitionAnimationViewController()
+            vc.navigationItem.title = key
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+                
+        
+        
+        
 
     }
 }

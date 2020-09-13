@@ -11,7 +11,6 @@ import UIKit
 class PinterestCollectionCell: UICollectionViewCell {
     lazy var nameLable : UILabel = {
         let label = UILabel()
-        label.backgroundColor = UIColor(patternImage: UIImage(named: "cardItemBack")!)
         label.numberOfLines = 0
         label.textColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 12)
@@ -41,7 +40,7 @@ class PinterestCollectionCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.frame = CGRect(x: 0, y: 0, width: model.imageSize.width, height: model.imageSize.height)
-        nameLable.frame = CGRect(x: 0, y: imageView.frame.maxX + 10, width: self.contentView.bounds.width, height: model.detaileHeight)
+        nameLable.frame = CGRect(x: 0, y: imageView.frame.maxY + 10, width: contentView.bounds.width, height: model.detaileHeight)
     }
     
     required init?(coder: NSCoder) {

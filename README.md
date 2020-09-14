@@ -1,5 +1,5 @@
 # CollectionLayout
-UICollectionView的特效(使用Objective-C 语言 与 Swift 语言分别编写)
+UICollectionView的特效(分别使用Objective-C 语言 与 Swift 语言编写)
 
 ### 应用
 

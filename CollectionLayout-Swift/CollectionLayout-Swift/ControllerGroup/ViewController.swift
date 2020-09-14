@@ -39,6 +39,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         collectionView.register(CollectionAlignmentCell.self, forCellWithReuseIdentifier: "CollectionAlignmentCell")
         self.view.addSubview(collectionView)
         DataModel.shareDemoData()
+        
+        print(self.view)
+        print(UIScreen.main)
     }
 
     

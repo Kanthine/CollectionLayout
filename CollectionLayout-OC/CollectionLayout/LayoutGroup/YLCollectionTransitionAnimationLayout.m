@@ -248,7 +248,7 @@
 @implementation YLCollectionParallaxAnimation
 
 - (instancetype)init{
-    return [self initWithSpeed:0.2];
+    return [self initWithSpeed:0.5];
 }
 
 - (instancetype)initWithSpeed:(CGFloat)speed{
@@ -260,6 +260,9 @@
 }
 
 - (void)transitionAnimationWithCollectionView:(UICollectionView *)collectionView attributes:(YLCollectionTransitionAnimationAttributes *)attributes{
+    if (attributes.contentView == nil) {
+        return;
+    }
     CGFloat position = attributes.middleOffset;
     if (fabs(position) >= 1) {
         attributes.contentView.frame = attributes.bounds;
@@ -278,12 +281,12 @@
         attributes.contentView.frame = newFrame;
     }
     
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:attributes.indexPath];
-    cell.clipsToBounds = YES;
-    cell.layer.shadowColor = [UIColor clearColor].CGColor; // 阴影颜色
-    cell.layer.shadowOffset = CGSizeMake(0, 0); // 偏移距离
-    cell.layer.shadowOpacity = 0; // 不透明度
-    cell.layer.shadowRadius = 0; // 半径
+//    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:attributes.indexPath];
+//    cell.clipsToBounds = YES;
+//    cell.layer.shadowColor = [UIColor clearColor].CGColor; // 阴影颜色
+//    cell.layer.shadowOffset = CGSizeMake(0, 0); // 偏移距离
+//    cell.layer.shadowOpacity = 0; // 不透明度
+//    cell.layer.shadowRadius = 0; // 半径
 }
 
 @end
@@ -494,6 +497,9 @@
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     NSArray<YLCollectionTransitionAnimationAttributes *> *attributesArray = [super layoutAttributesForElementsInRect:rect];
+    if (self.collectionView == nil) {
+        return attributesArray;
+    }
     
     CGFloat distance = self.scrollDirection == UICollectionViewScrollDirectionVertical ? CGRectGetHeight(self.collectionView.frame) : CGRectGetWidth(self.collectionView.frame);
 
@@ -513,14 +519,9 @@
         
         attribute.scrollDirection = self.scrollDirection;
         attribute.middleOffset = itemOffset / distance - 0.5;
-        
-//        printf("itemOffset : %f ， startOffset : %f ， endOffset : %f ，middleOffset : %f ， row : %ld \n",itemOffset,attribute.startOffset,attribute.endOffset,attribute.middleOffset,(long)attribute.indexPath.row);
-        
-
         if (attribute.contentView == nil){
             attribute.contentView = [self.collectionView cellForItemAtIndexPath:attribute.indexPath].contentView;
         }
-        
         [self.animationOperator transitionAnimationWithCollectionView:self.collectionView attributes:attribute];
     }];
     return attributesArray;

@@ -30,7 +30,7 @@ class CollectionTransitionAnimationCell: UICollectionViewCell {
     var model : DataModel! {
         didSet{
             imageView.image = model.image
-            nameLable.text = "\(model.title)-\(model.index)"
+            nameLable.text = String(model.title) + "-" + String(model.index)
         }
     }
     

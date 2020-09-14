@@ -77,19 +77,24 @@ class YLSheetView: UIView {
         contentView.transform = CGAffineTransform(translationX: 0, y: contentView.bounds.height)
         coverButton.alpha = 0
         UIView.animate(withDuration: 0.2) { [self] in
-            coverButton.alpha = 1.0
-            contentView.transform = CGAffineTransform.identity
+            self.coverButton.alpha = 1.0
+            self.contentView.transform = CGAffineTransform.identity
         }
     }
     
     // MARK: - response click
     @objc func dismissButtonClick() {
-        UIView.animate(withDuration: 0.2) { [self] in
-            coverButton.alpha = 0
-            contentView.transform = CGAffineTransform(translationX: 0, y: contentView.bounds.height)
-        } completion: { (finished : Bool) in
+        UIView.animate(withDuration: 0.2, animations: {
+            self.coverButton.alpha = 0
+            self.contentView.transform = CGAffineTransform(translationX: 0, y: self.contentView.bounds.height)
+        }) { (finished : Bool) in
             self.removeFromSuperview()
         }
+//        UIView.animate(withDuration: 0.2) { [self] in
+//
+//        } completion: {
+//            self.removeFromSuperview()
+//        }
     }
     
     @objc func handleButtonClick(sender : UIButton) {
@@ -97,6 +102,10 @@ class YLSheetView: UIView {
         dismissButtonClick()
     }
 }
+
+
+
+
 
 
 
@@ -141,7 +150,9 @@ class TransitionAnimationViewController: UIViewController,UICollectionViewDelega
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        collectionView.frame = self.view.bounds
+        collectionView.frame = CGRect(x: 0, y: 20, width: view.bounds.width, height: view.bounds.height - 40)
+        let flowLayout : YLCollectionTransitionAnimationLayout = collectionView.collectionViewLayout as! YLCollectionTransitionAnimationLayout
+        flowLayout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
 
 
@@ -152,6 +163,7 @@ class TransitionAnimationViewController: UIViewController,UICollectionViewDelega
             sender.setTitle(item, for: .normal)
             flowLayout.transitionType = transitionType
         }
+        sheetView.show()
         collectionView.reloadData()
     }
     // MARK: - UICollectionViewDelegate

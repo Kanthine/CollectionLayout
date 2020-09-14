@@ -9,10 +9,10 @@
 import UIKit
 
 class DataModel: NSObject {
-    var title : NSString!
-    var detaile : NSString!
+    var title : NSString! = ""
+    var detaile : NSString! = ""
     var image : UIImage!
-    var index : NSInteger!
+    var index : NSInteger! = 0
     
 
     /// 延迟加载并返回FilesContentBuilder的单例实例

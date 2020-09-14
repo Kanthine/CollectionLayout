@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let vc = ViewController()
         let nav = UINavigationController.init(rootViewController: vc)
+        nav.navigationBar.isTranslucent = false
         window.rootViewController = nav
         
         return true

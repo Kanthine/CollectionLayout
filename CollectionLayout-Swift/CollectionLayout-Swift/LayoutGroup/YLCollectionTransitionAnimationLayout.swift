@@ -150,7 +150,6 @@ public struct YLCollectionCardAnimation: YLCollectionTransitionAnimationOperator
     public var minAlpha: CGFloat
     
     /// 两个 cell 之间的间距比。默认为 0.4
-
     public var itemSpacing: CGFloat
     
     /// cell 的缩放比例
@@ -166,8 +165,7 @@ public struct YLCollectionCardAnimation: YLCollectionTransitionAnimationOperator
         let position = attributes.middleOffset
         let scaleFactor = scaleRate - 0.1 * abs(position)
         let scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-        
-        let translationTransform: CGAffineTransform
+        var translationTransform: CGAffineTransform
         
         if attributes.scrollDirection == .horizontal {
             let width = collectionView.frame.width
@@ -199,7 +197,7 @@ public struct YLCollectionCoverAnimation: YLCollectionTransitionAnimationOperato
         let position = attributes.middleOffset
         let contentOffset = collectionView.contentOffset
         let itemOrigin = attributes.frame.origin
-        let scaleFactor = scaleRate - min(position, 0) + 1.0
+        let scaleFactor = scaleRate * min(position, 0) + 1.0
         var transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
         
         if attributes.scrollDirection == .horizontal {
@@ -232,7 +230,7 @@ public struct YLCollectionOpenAnimation: YLCollectionTransitionAnimationOperator
         }
         attributes.zIndex = 10000 - attributes.indexPath.row
         
-        let cell : UICollectionViewCell = collectionView.cellForItem(at: attributes.indexPath)!
+        guard let cell : UICollectionViewCell = collectionView.cellForItem(at: attributes.indexPath) else { return }
         cell.clipsToBounds = false
         cell.layer.shadowColor = UIColor.black.cgColor // 阴影颜色
         cell.layer.shadowOffset = CGSize.zero // 偏移距离
@@ -271,7 +269,9 @@ public struct YLCollectionParallaxAnimation: YLCollectionTransitionAnimationOper
             contentView.frame = newFrame
         }
         
-        let cell : UICollectionViewCell = collectionView.cellForItem(at: attributes.indexPath)!
+        print(contentView)
+        
+        guard let cell : UICollectionViewCell = collectionView.cellForItem(at: attributes.indexPath) else { return }
         cell.clipsToBounds = true
         cell.layer.shadowColor = UIColor.clear.cgColor // 阴影颜色
         cell.layer.shadowOffset = CGSize.zero // 偏移距离
@@ -331,7 +331,6 @@ public struct YLCollectionZoomInOutAnimation: YLCollectionTransitionAnimationOpe
     
     public func transitionAnimation(collectionView: UICollectionView, attributes: YLCollectionTransitionAnimationAttributes) {
         let position = attributes.middleOffset
-        
         if position <= 0 && position > -1 {
             let scaleFactor = scaleRate * position + 1.0
             attributes.transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
@@ -355,15 +354,15 @@ class YLCollectionTransitionAnimationLayout: UICollectionViewFlowLayout {
             
             switch transitionType {
             case .none?: animationOperator = YLCollectionNoneAnimation()
-            case .cube: animationOperator = YLCollectionCubeAnimation()
-            case .card: animationOperator = YLCollectionCardAnimation()
-            case .cover: animationOperator = YLCollectionCoverAnimation()
+            case .cube: animationOperator = YLCollectionCubeAnimation(perspective: -1 / 500.0, totalAngle: .pi / 2.0)
+            case .card: animationOperator = YLCollectionCardAnimation(minAlpha: 0.5, itemSpacing: 0.4, scaleRate: 0.7)
+            case .cover: animationOperator = YLCollectionCoverAnimation(scaleRate: 0.2)
             case .open: animationOperator = YLCollectionOpenAnimation()
             case .pan: animationOperator = YLCollectionParallaxAnimation(speed: 0)
-            case .parallax: animationOperator = YLCollectionParallaxAnimation()
+            case .parallax: animationOperator = YLCollectionParallaxAnimation(speed: 0.5)
             case .crossFade: animationOperator = YLCollectionCrossFadeAnimation()
-            case .rotateInOut: animationOperator = YLCollectionRotateInOutAnimation()
-            case .zoomInOut: animationOperator = YLCollectionZoomInOutAnimation()
+            case .rotateInOut: animationOperator = YLCollectionRotateInOutAnimation(minAlpha: 0, maxRotate: .pi / 4.0)
+            case .zoomInOut: animationOperator = YLCollectionZoomInOutAnimation(scaleRate: 0.2)
             default: animationOperator = nil
             }
             invalidateLayout()
@@ -395,35 +394,34 @@ class YLCollectionTransitionAnimationLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let attributesArray = super.layoutAttributesForElements(in: rect) else { return nil }
-        return attributesArray.compactMap { $0.copy() as? YLCollectionTransitionAnimationAttributes }.map { self.transformLayoutAttributes($0) }
-    }
-    private func transformLayoutAttributes(_ attributes: YLCollectionTransitionAnimationAttributes) -> UICollectionViewLayoutAttributes {
-        
-        guard let collectionView = self.collectionView else { return attributes }
-        let a = attributes
-        let distance: CGFloat
-        let itemOffset: CGFloat//偏移量
-        
-        if scrollDirection == .horizontal {
-            distance = collectionView.frame.width
-            itemOffset = a.center.x - collectionView.contentOffset.x
-            //startOffset = cell.indexPath.row - 偏移的单元格数量（左减右加，上减下加）
-            a.startOffset = (a.frame.origin.x - collectionView.contentOffset.x) / a.frame.width
-            a.endOffset = (a.frame.origin.x - collectionView.contentOffset.x - collectionView.frame.width) / a.frame.width
-        } else {
-            distance = collectionView.frame.height
-            itemOffset = a.center.y - collectionView.contentOffset.y
-            a.startOffset = (a.frame.origin.y - collectionView.contentOffset.y) / a.frame.height
-            a.endOffset = (a.frame.origin.y - collectionView.contentOffset.y - collectionView.frame.height) / a.frame.height
+        guard let collectionView = self.collectionView else { return attributesArray }
+
+        for item in attributesArray {
+            let attribute : YLCollectionTransitionAnimationAttributes = item as! YLCollectionTransitionAnimationAttributes
+            
+            let distance: CGFloat
+            let itemOffset: CGFloat//偏移量
+            
+            if scrollDirection == .horizontal {
+                distance = collectionView.frame.width
+                itemOffset = attribute.center.x - collectionView.contentOffset.x
+                //startOffset = cell.indexPath.row - 偏移的单元格数量（左减右加，上减下加）
+                attribute.startOffset = (attribute.frame.origin.x - collectionView.contentOffset.x) / attribute.frame.width
+                attribute.endOffset = (attribute.frame.origin.x - collectionView.contentOffset.x - collectionView.frame.width) / attribute.frame.width
+            } else {
+                distance = collectionView.frame.height
+                itemOffset = attribute.center.y - collectionView.contentOffset.y
+                attribute.startOffset = (attribute.frame.origin.y - collectionView.contentOffset.y) / attribute.frame.height
+                attribute.endOffset = (attribute.frame.origin.y - collectionView.contentOffset.y - collectionView.frame.height) / attribute.frame.height
+            }
+            attribute.scrollDirection = scrollDirection
+            attribute.middleOffset = itemOffset / distance - 0.5
+            if attribute.contentView == nil,
+                let c = collectionView.cellForItem(at: attribute.indexPath)?.contentView {
+                attribute.contentView = c
+            }
+            animationOperator.transitionAnimation(collectionView: collectionView, attributes: attribute)
         }
-        a.scrollDirection = scrollDirection
-        a.middleOffset = itemOffset / distance - 0.5
-        if a.contentView == nil,
-            let c = collectionView.cellForItem(at: attributes.indexPath)?.contentView {
-            a.contentView = c
-        }
-        animationOperator.transitionAnimation(collectionView: collectionView, attributes: a)
-        return a
+        return attributesArray
     }
-    
 }

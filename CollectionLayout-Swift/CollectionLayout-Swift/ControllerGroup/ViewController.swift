@@ -81,11 +81,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
             vc.navigationItem.title = key
             self.navigationController?.pushViewController(vc, animated: true)
         }
-                
-        
-        
-        
-
     }
 }
 
